@@ -53,14 +53,14 @@ public class FileReaderTest {
     @Test
     public void testFileEmpty() {
         System.out.println("utils.FileReaderTest.testFileEmpty()");
-        assertNull(FileReader.read("./test/resources/dataTestNull.csv"));
+        assertNull(FileReader.read("./src/test/java/resources/dataTestNull.csv"));
         System.out.println("");
     }
 
     @Test
     public void testFileOneValueGood() {
         System.out.println("utils.FileReaderTest.testFileOneValueGood()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTestOneValueGood.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestOneValueGood.csv");
         assertNotNull(data);
         assertNotNull(data.get(0));
         assertEquals(data.get(0).size(), 0);
@@ -70,35 +70,35 @@ public class FileReaderTest {
     @Test
     public void testFileOneValueWrong() {
         System.out.println("utils.FileReaderTest.testFileOneValueWrong()");
-        assertNull(FileReader.read("./test/resources/dataTestOneValueWrong.csv"));
+        assertNull(FileReader.read("./src/test/java/resources/dataTestOneValueWrong.csv"));
         System.out.println("");
     }
 
     @Test
     public void testFileWrongTotal() {
         System.out.println("utils.FileReaderTest.testFileWrongTotal()");
-        assertNull(FileReader.read("./test/resources/dataTestWrongTotal.csv"));
+        assertNull(FileReader.read("./src/test/java/resources/dataTestWrongTotal.csv"));
         System.out.println("");
     }
 
     @Test
     public void testFileWrongTotalValue() {
         System.out.println("utils.FileReaderTest.testFileWrongTotalValue()");
-        assertNull(FileReader.read("./test/resources/dataTestWrongTotalValue.csv"));
+        assertNull(FileReader.read("./src/test/java/resources/dataTestWrongTotalValue.csv"));
         System.out.println("");
     }
 
     @Test
     public void testFileWrongValue() {
         System.out.println("utils.FileReaderTest.testFileWrongValue()");
-        assertNull(FileReader.read("./test/resources/dataTestWrongValue.csv"));
+        assertNull(FileReader.read("./src/test/java/resources/dataTestWrongValue.csv"));
         System.out.println("");
     }
 
     @Test
     public void testFileGood() {
         System.out.println("utils.FileReaderTest.testFileGood()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTest.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTest.csv");
         System.out.println("");
         assertNotNull(data);
         assertNotNull(data.get(0));
@@ -109,7 +109,7 @@ public class FileReaderTest {
     @Test
     public void testFileCorrelationWrongColumnLess() {
         System.out.println("utils.FileReaderTest.testFileCorrelationWrongColumnLess()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTestCorrelationWrongColumnLess.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestCorrelationWrongColumnLess.csv");
         System.out.println("");
         assertNull(data);
     }
@@ -117,7 +117,7 @@ public class FileReaderTest {
     @Test
     public void testFileCorrelationWrongColumnMore() {
         System.out.println("utils.FileReaderTest.testFileCorrelationWrongColumnMore()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTestCorrelationWrongColumnMore.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestCorrelationWrongColumnMore.csv");
         System.out.println("");
         assertNull(data);
     }
@@ -125,7 +125,7 @@ public class FileReaderTest {
     @Test
     public void testFileCorrelationWrongColumnValue() {
         System.out.println("utils.FileReaderTest.testFileCorrelationWrongColumnValue()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTestCorrelationWrongColumnValue.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestCorrelationWrongColumnValue.csv");
         System.out.println("");
         assertNull(data);
     }
@@ -133,7 +133,7 @@ public class FileReaderTest {
     @Test
     public void testFileCorrelationGood() {
         System.out.println("utils.FileReaderTest.testFileCorrelationGood()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTestCorrelation.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestCorrelation.csv");
         System.out.println("");
         assertNotNull(data);
         assertEquals(data.size(), 2);

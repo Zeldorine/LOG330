@@ -2,7 +2,7 @@
 *.class
 
 # target
-LOG530/target/*
+LOG330/target/*
 
 # Log file
 *.log

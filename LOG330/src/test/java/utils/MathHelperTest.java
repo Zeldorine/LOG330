@@ -54,7 +54,7 @@ public class MathHelperTest {
     @Test
     public void testCalculateZeroValue() {
         System.out.println("utils.MathHelperTest.testCalculateZeroValue()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTestOneValueGood.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestOneValueGood.csv");
         CalculationResult result = MathHelper.calculate(data.get(0));
         assertEquals(new Double(0), result.getMoyenne());
         assertEquals(new Double(0), result.getVariance());
@@ -65,7 +65,7 @@ public class MathHelperTest {
     @Test
     public void testCalculateCorrelationZeroValue() {
         System.out.println("utils.MathHelperTest.testCalculateCorrelationZeroValue()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTestOneValueGood.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestOneValueGood.csv");
         CalculationResult result = MathHelper.CalculateCorrelation(data);
         assertEquals(null, result.getCorrelation());
         System.out.println("");
@@ -74,7 +74,7 @@ public class MathHelperTest {
     @Test
     public void testCalculate() {
         System.out.println("utils.MathHelperTest.testCalculate()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTest.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTest.csv");
         CalculationResult result = MathHelper.calculate(data.get(0));
         assertEquals(new Double(638.9000000000001), result.getMoyenne());
         assertEquals(new Double(391417.8777777777), result.getVariance());
@@ -85,7 +85,7 @@ public class MathHelperTest {
     @Test
     public void testCalculateCorrelation() {
         System.out.println("utils.MathHelperTest.testCalculateCorrelation()");
-        List<List<Double>> data = FileReader.read("./test/resources/dataTestCorrelation.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestCorrelation.csv");
         CalculationResult result = MathHelper.CalculateCorrelation(data);
         assertEquals(new Double(0.9559205282352726), result.getCorrelation());
         System.out.println("");
