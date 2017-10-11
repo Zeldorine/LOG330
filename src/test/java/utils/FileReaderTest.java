@@ -103,7 +103,7 @@ public class FileReaderTest {
         assertNotNull(data);
         assertNotNull(data.get(0));
         assertEquals(data.size(), 1);
-        assertEquals(data.get(0).size(), 11);
+        assertEquals(data.get(0).size(), 10);
     }
 
     @Test
