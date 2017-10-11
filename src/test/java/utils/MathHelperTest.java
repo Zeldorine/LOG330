@@ -76,9 +76,9 @@ public class MathHelperTest {
         System.out.println("utils.MathHelperTest.testCalculate()");
         List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTest.csv");
         CalculationResult result = MathHelper.calculate(data.get(0));
-        assertEquals(new Double(638.9000000000001), result.getMoyenne());
-        assertEquals(new Double(391417.8777777777), result.getVariance());
-        assertEquals(new Double(625.6339806770231), result.getEcartType());
+        assertEquals(638.9000000000001, result.getMoyenne());
+        assertEquals(391417.8777777777, result.getVariance());
+        assertEquals(625.6339806770231, result.getEcartType());
         System.out.println("");
     }
 
@@ -87,7 +87,7 @@ public class MathHelperTest {
         System.out.println("utils.MathHelperTest.testCalculateCorrelation()");
         List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestCorrelation.csv");
         CalculationResult result = MathHelper.CalculateCorrelation(data);
-        assertEquals(new Double(0.9559205282352726), result.getCorrelation());
+        assertEquals(0.9559205282352726, result.getCorrelation());
         System.out.println("");
     }
 }
