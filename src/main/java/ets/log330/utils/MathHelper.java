@@ -41,9 +41,13 @@ public abstract class MathHelper {
      * @param data List of number .
      * @return Moyenne.
      */
-    private static Double calculateMoyenne(List<Double> data) {
+    static Double calculateMoyenne(List<Double> data) {
         Double somme = new Double(0);
 
+        if(data == null || data.isEmpty()){
+            return somme;
+        }
+        
         for (Double element : data) {
             somme += element;
         }
@@ -58,7 +62,7 @@ public abstract class MathHelper {
      * @param moyenne Moyenne calculated form the list.
      * @return A list with the distance for all element in the list.
      */
-    private static List<Double> calculateDistance(List<Double> data, Double moyenne) {
+    static List<Double> calculateDistance(List<Double> data, Double moyenne) {
         if (moyenne == null) {
             System.out.println("Moyenne is null, cannot calculate distance");
             return null;
@@ -79,7 +83,7 @@ public abstract class MathHelper {
      * @param distance A list of each distance.
      * @return Sum of distance.
      */
-    private static Double calculateSommeDistance(List<Double> distance) {
+    static Double calculateSommeDistance(List<Double> distance) {
         if (distance == null) {
             System.out.println("Distance is null, cannot calculate somme distance");
             return null;
@@ -101,7 +105,7 @@ public abstract class MathHelper {
      * @param totalData Total element used to calculate variance.
      * @return The variance.
      */
-    private static Double calculateVariance(Double sommeDistance, int totalData) {
+    static Double calculateVariance(Double sommeDistance, int totalData) {
         if (sommeDistance == null) {
             System.out.println("Somme distance is null, cannot calculate variance");
             return null;
@@ -116,7 +120,7 @@ public abstract class MathHelper {
      * @param variance Variance.
      * @return Ecart Type.
      */
-    private static Double calculateEcartType(Double variance) {
+    static Double calculateEcartType(Double variance) {
         if (variance == null) {
             System.out.println("Variance is null, cannot calculate ecart type");
             return null;
@@ -162,7 +166,7 @@ public abstract class MathHelper {
      * @param pow the exponent
      * @return {@link utils.CalculationResult}.
      */
-    private static Double calculateSumPow(List<Double> data, int pow) {
+    static Double calculateSumPow(List<Double> data, int pow) {
         if (data == null || data.isEmpty()) {
             System.out.println("Data is null or empty, cannot calculate sum.");
             return null;
@@ -182,7 +186,7 @@ public abstract class MathHelper {
      * @param data set of list correspondant to multiple columns to product
      * @return the sum
      */
-    private static Double calculateSumProduct(List<List<Double>> data) {
+    static Double calculateSumProduct(List<List<Double>> data) {
         if (data == null || data.isEmpty()) {
             System.out.println("Data is null or empty, cannot calculate sum.");
             return null;

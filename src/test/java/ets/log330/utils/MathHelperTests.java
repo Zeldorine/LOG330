@@ -1,8 +1,5 @@
-package utils;
+package ets.log330.utils;
 
-import ets.log330.utils.CalculationResult;
-import ets.log330.utils.FileReader;
-import ets.log330.utils.MathHelper;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
@@ -11,14 +8,16 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNull;
 
 /**
  *
  * @author Zeldorine
  */
-public class MathHelperTest {
+public class MathHelperTests {
 
-    public MathHelperTest() {
+    public MathHelperTests() {
     }
 
     @BeforeClass
@@ -54,7 +53,7 @@ public class MathHelperTest {
     @Test
     public void testCalculateZeroValue() {
         System.out.println("utils.MathHelperTest.testCalculateZeroValue()");
-        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestOneValueGood.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestOneValueGood.csv");
         CalculationResult result = MathHelper.calculate(data.get(0));
         assertEquals(new Double(0), result.getMoyenne());
         assertEquals(new Double(0), result.getVariance());
@@ -65,7 +64,7 @@ public class MathHelperTest {
     @Test
     public void testCalculateCorrelationZeroValue() {
         System.out.println("utils.MathHelperTest.testCalculateCorrelationZeroValue()");
-        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestOneValueGood.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestOneValueGood.csv");
         CalculationResult result = MathHelper.CalculateCorrelation(data);
         assertEquals(null, result.getCorrelation());
         System.out.println("");
@@ -74,7 +73,7 @@ public class MathHelperTest {
     @Test
     public void testCalculate() {
         System.out.println("utils.MathHelperTest.testCalculate()");
-        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTest.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTest.csv");
         CalculationResult result = MathHelper.calculate(data.get(0));
         assertEquals(638.9000000000001, result.getMoyenne());
         assertEquals(391417.8777777777, result.getVariance());
@@ -85,7 +84,7 @@ public class MathHelperTest {
     @Test
     public void testCalculateCorrelation() {
         System.out.println("utils.MathHelperTest.testCalculateCorrelation()");
-        List<List<Double>> data = FileReader.read("./src/test/java/resources/dataTestCorrelation.csv");
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestCorrelation.csv");
         CalculationResult result = MathHelper.CalculateCorrelation(data);
         assertEquals(0.9559205282352726, result.getCorrelation());
         System.out.println("");
