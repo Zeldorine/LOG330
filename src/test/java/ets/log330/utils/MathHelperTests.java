@@ -85,6 +85,9 @@ public class MathHelperTests {
         List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestCorrelation.csv");
         CalculationResult result = MathHelper.CalculateCorrelation(data);
         assertEquals(new Double(0.9559205282352726), result.getCorrelation());
+        assertNull(result.getEcartType());
+        assertNull(result.getMoyenne());
+        assertNull(result.getVariance());
         System.out.println("");
     }
 }
