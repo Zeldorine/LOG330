@@ -10,7 +10,7 @@ import org.junit.Test;
  *
  * @author Zeldorine
  */
-public class SommePuissanceTests extends MathTests {
+public class SommeProduitElementListeTests extends MathTests {
 
     @BeforeClass
     public static void setUpClass() {

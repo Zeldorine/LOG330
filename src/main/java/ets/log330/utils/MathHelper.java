@@ -157,11 +157,11 @@ public abstract class MathHelper {
         }
 
         Double n = new Double(data.get(0).size());
-        Double sumXY = calculateSumProduct(data);
-        Double sumX = calculateSumPow(data.get(0), 1);
-        Double sumY = calculateSumPow(data.get(1), 1);
-        Double sumXCarre = calculateSumPow(data.get(0), 2);
-        Double sumYCarre = calculateSumPow(data.get(1), 2);
+        Double sumXY = calculateSumProductElementBetweenList(data);
+        Double sumX = calculateSumPowElementList(data.get(0), 1);
+        Double sumY = calculateSumPowElementList(data.get(1), 1);
+        Double sumXCarre = calculateSumPowElementList(data.get(0), 2);
+        Double sumYCarre = calculateSumPowElementList(data.get(1), 2);
 
         Double correlation = ((n * sumXY) - (sumX * sumY)) / (Math.sqrt(((n * sumXCarre) - Math.pow(sumX, 2)) * (n * sumYCarre - Math.pow(sumY, 2))));
 
@@ -176,11 +176,16 @@ public abstract class MathHelper {
      * @param pow the exponent
      * @return {@link utils.CalculationResult}.
      */
-    static Double calculateSumPow(List<Double> data, int pow) {
-        if (data == null || data.isEmpty()) {
-            System.out.println("Data is null or empty, cannot calculate sum.");
+    static Double calculateSumPowElementList(List<Double> data, int pow) {
+        if (data == null) {
+            System.out.println("Data is null, cannot calculate sum.");
             return null;
         }
+        
+        if(data.isEmpty()){
+            return new Double(0);
+        }
+        
 
         Double sum = new Double(0);
         for (Double value : data) {
@@ -196,14 +201,14 @@ public abstract class MathHelper {
      * @param data set of list correspondant to multiple columns to product
      * @return the sum
      */
-    static Double calculateSumProduct(List<List<Double>> data) {
+    static Double calculateSumProductElementBetweenList(List<List<Double>> data) {
         if (data == null || data.isEmpty()) {
             System.out.println("Data is null or empty, cannot calculate sum.");
             return null;
         }
 
         if (data.size() < 2) {
-            return calculateSumPow(data.get(0), 1);
+            return calculateSumPowElementList(data.get(0), 1);
         }
 
         Double sum = new Double(0);

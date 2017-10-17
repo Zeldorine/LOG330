@@ -14,10 +14,12 @@ import org.junit.Test;
 
 public abstract class MathTests {
 
-    static List<Double> data;
+    static List<Double> dataOneColumn;
+    static List<List<Double>> dataTwoColumn;
 
     static {
-        data = FileReader.read("./src/test/java/ets/log330/resources/dataTest.csv").get(0);
+        dataOneColumn = FileReader.read("./src/test/java/ets/log330/resources/dataTest.csv").get(0);
+        dataTwoColumn = FileReader.read("./src/test/java/ets/log330/resources/dataTestCorrelation.csv");
     }
 
     @BeforeClass
@@ -36,8 +38,12 @@ public abstract class MathTests {
     public void tearDown() {
     }
 
-    public List<Double> getData() {
-        return new ArrayList<Double>(data);
+    public List<Double> getListOneColumn() {
+        return new ArrayList<Double>(dataOneColumn);
+    }
+    
+    public List<List<Double>> getListTwoColumn() {
+        return new ArrayList<List<Double>>(dataTwoColumn);
     }
 
     @Test

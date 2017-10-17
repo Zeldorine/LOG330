@@ -8,6 +8,8 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -89,6 +91,7 @@ public class MoyenneTests extends MathTests {
     @Test
     @Override
     public void testBorneSuperieure() {
+        List<Double> data = getListOneColumn();
         data.addAll(data);
         data.addAll(data);
         data.addAll(data);
@@ -119,7 +122,7 @@ public class MoyenneTests extends MathTests {
     @Test
     @Override
     public void testValide() {
-        Double result = MathHelper.calculateMoyenne(data);
+        Double result = MathHelper.calculateMoyenne(getListOneColumn());
         assertNotNull(result);
         assertEquals(new Double(638.9000000000001), result);
     }

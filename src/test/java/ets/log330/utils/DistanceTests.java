@@ -11,6 +11,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -131,7 +134,7 @@ public class DistanceTests extends MathTests {
     @Test
     @Override
     public void testBorneSuperieure() {
-        List<Double> data = getData();
+        List<Double> data = getListOneColumn();
         data.addAll(data);
         data.addAll(data);
         data.addAll(data);
@@ -188,7 +191,7 @@ public class DistanceTests extends MathTests {
     @Test
     @Override
     public void testValide() {
-        List<Double> data = getData();
+        List<Double> data = getListOneColumn();
         Double[] resultExpected = {
             205118.4100000001,
             3612.009999999989,
