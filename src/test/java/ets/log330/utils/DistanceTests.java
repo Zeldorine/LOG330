@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ets.log330.utils;
 
-import static ets.log330.utils.MathTests.data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import static junit.framework.Assert.assertEquals;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertNotNull;
@@ -17,6 +10,7 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -74,23 +68,23 @@ public class DistanceTests extends MathTests {
         List<Double> result = MathHelper.calculateDistance(nan, Double.NaN);
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals(Double.NaN, result.get(0));
+        assertEquals(new Double(Double.NaN), result.get(0));
 
         result = MathHelper.calculateDistance(nan, 3.1252);
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals(Double.NaN, result.get(0));
+        assertEquals(new Double(Double.NaN), result.get(0));
 
         nan.add(Double.parseDouble("3.162"));
         result = MathHelper.calculateDistance(nan, Double.NaN);
         assertNotNull(result);
         assertEquals(2, result.size());
-        assertEquals(Double.NaN, result.get(0));
+        assertEquals(new Double(Double.NaN), result.get(0));
 
         result = MathHelper.calculateDistance(nan, 5142.125);
         assertNotNull(result);
         assertEquals(2, result.size());
-        assertEquals(Double.NaN, result.get(0));
+        assertEquals(new Double(Double.NaN), result.get(0));
     }
 
     @Test
@@ -119,7 +113,7 @@ public class DistanceTests extends MathTests {
         assertNotNull(resultInfinityNeg);
         assertEquals(3, resultInfinityNeg.size());
         for (Double distance : resultInfinityNeg) {
-            assertEquals(Double.NaN, distance);
+            assertEquals(new Double(Double.NaN), distance);
         }
 
         List<Double> minValue = new ArrayList<Double>(1);
@@ -187,7 +181,7 @@ public class DistanceTests extends MathTests {
         assertNotNull(resultInfinity);
         assertEquals(1, resultInfinity.size());
         for (Double distance : resultInfinity) {
-            assertEquals(Double.NaN, distance);
+            assertEquals(new Double(Double.NaN), distance);
         }
     }
 

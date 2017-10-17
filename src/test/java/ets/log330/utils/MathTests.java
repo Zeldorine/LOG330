@@ -5,7 +5,6 @@ package ets.log330.utils;
  * @author Zeldorine
  */
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,8 +37,6 @@ public abstract class MathTests {
     }
 
     public List<Double> getData() {
-        //List<Double> copy = new ArrayList<Double>(data);
-        //Collections.copy(copy, data);
         return new ArrayList<Double>(data);
     }
 
