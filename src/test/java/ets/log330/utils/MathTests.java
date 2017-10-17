@@ -4,26 +4,27 @@ package ets.log330.utils;
  *
  * @author Zeldorine
  */
-
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import static junit.framework.Assert.assertEquals;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 public abstract class MathTests {
-        static List<Double> data;
+
+    static List<Double> data;
+
+    static {
+        data = FileReader.read("./src/test/java/ets/log330/resources/dataTest.csv").get(0);
+    }
 
     @BeforeClass
     public static void setUpClass() {
-        data = FileReader.read("./src/test/java/ets/log330/resources/dataTest.csv").get(0);
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
@@ -36,6 +37,12 @@ public abstract class MathTests {
     public void tearDown() {
     }
 
+    public List<Double> getData() {
+        //List<Double> copy = new ArrayList<Double>(data);
+        //Collections.copy(copy, data);
+        return new ArrayList<Double>(data);
+    }
+
     @Test
     public abstract void testNullValue();
 
@@ -44,13 +51,13 @@ public abstract class MathTests {
 
     @Test
     public abstract void testNotANumberValue();
-    
+
     @Test
     public abstract void testBorneInferieure();
 
     @Test
     public abstract void testBorneSuperieure();
-    
+
     @Test
     public abstract void testValide();
 }

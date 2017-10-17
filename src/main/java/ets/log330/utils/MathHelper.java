@@ -44,10 +44,10 @@ public abstract class MathHelper {
     static Double calculateMoyenne(List<Double> data) {
         Double somme = new Double(0);
 
-        if(data == null || data.isEmpty()){
+        if (data == null || data.isEmpty()) {
             return somme;
         }
-        
+
         for (Double element : data) {
             somme += element;
         }
@@ -65,6 +65,11 @@ public abstract class MathHelper {
     static List<Double> calculateDistance(List<Double> data, Double moyenne) {
         if (moyenne == null) {
             System.out.println("Moyenne is null, cannot calculate distance");
+            return null;
+        }
+
+        if (data == null) {
+            System.out.println("Data is null, cannot calculate distance");
             return null;
         }
 

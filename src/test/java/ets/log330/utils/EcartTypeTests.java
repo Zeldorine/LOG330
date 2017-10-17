@@ -42,7 +42,7 @@ public class EcartTypeTests extends MathTests {
     @Test
     @Override
     public void testEmptyValue() {
-
+        
     }
 
     @Test
