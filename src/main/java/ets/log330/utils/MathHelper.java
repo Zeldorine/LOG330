@@ -117,7 +117,7 @@ public abstract class MathHelper {
         }
         
         if(totalData < 2){
-            System.out.println("The number of total value cannot be less than 1. Actual value is: " + totalData);
+            System.out.println("The number of total value cannot be less than 2. Actual value is: " + totalData);
             return null;
         }
 
