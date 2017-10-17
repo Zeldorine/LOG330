@@ -101,7 +101,6 @@ public class MoyenneTests extends MathTests {
 
         Double result = MathHelper.calculateMoyenne(data);
         assertNotNull(result);
-        assertEquals(5120, data.size());
         assertEquals(new Double(638.9000000000001), result);
 
         List<Double> maxValues = new ArrayList<Double>(1);

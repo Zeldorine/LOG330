@@ -115,6 +115,11 @@ public abstract class MathHelper {
             System.out.println("Somme distance is null, cannot calculate variance");
             return null;
         }
+        
+        if(totalData < 2){
+            System.out.println("The number of total value cannot be less than 1. Actual value is: " + totalData);
+            return null;
+        }
 
         return (1 / (double) (totalData - 1)) * sommeDistance;
     }
