@@ -45,6 +45,10 @@ public class CorrelationCalculator extends Calculator {
      * @param result The result
      */
     protected static void displayResult(CalculationResult result) {
+        if(result == null){
+            System.out.println("No result to display, result is null.");
+        }
+        
         System.out.println("Correlation = " + result.getCorrelation());
         System.out.println("Correlation au carre = " + Math.pow(result.getCorrelation(), 2));
     }

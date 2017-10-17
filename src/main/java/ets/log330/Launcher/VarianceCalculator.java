@@ -38,6 +38,10 @@ public class VarianceCalculator extends Calculator {
      * @param result  The result
      */
     protected static void displayResult(CalculationResult result){
+        if(result == null){
+            System.out.println("No result to display, result is null.");
+        }
+        
         System.out.println("Moyenne = " + result.getMoyenne());
         System.out.println("Variance = " + result.getVariance());
         System.out.println("Ecart type = " + result.getEcartType());
