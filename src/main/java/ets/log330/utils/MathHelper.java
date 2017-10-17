@@ -202,9 +202,13 @@ public abstract class MathHelper {
      * @return the sum
      */
     static Double calculateSumProductElementBetweenList(List<List<Double>> data) {
-        if (data == null || data.isEmpty()) {
-            System.out.println("Data is null or empty, cannot calculate sum.");
+        if (data == null) {
+            System.out.println("Data is null, cannot calculate sum.");
             return null;
+        }
+        
+        if(data.isEmpty()){
+            return new Double(0);
         }
 
         if (data.size() < 2) {
