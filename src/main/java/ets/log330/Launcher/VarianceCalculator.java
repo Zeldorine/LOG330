@@ -30,20 +30,39 @@ public class VarianceCalculator extends Calculator {
             exit(-1);
         }
         
-        displayResult(result);
+        System.out.println(getDisplayResult(result));
     }
     
     /**
      * Display result after calculation
      * @param result  The result
      */
-    protected static void displayResult(CalculationResult result){
+    protected static String getDisplayResult(CalculationResult result){
+        StringBuilder displayResult = new StringBuilder();
+        
         if(result == null){
-            System.out.println("No result to display, result is null.");
+            displayResult.append("No result to display, result is null.");
+        } else {
+            if(result.getMoyenne() == null){
+                displayResult.append("Moyenne = null").append(NEW_LINE);
+            }else {
+                displayResult.append("Moyenne = ").append(result.getMoyenne()).append(NEW_LINE);
+            }
+            
+            if(result.getMoyenne() == null){
+                displayResult.append("Variance = null").append(NEW_LINE);
+            }else {
+                displayResult.append("Variance = ").append(result.getVariance()).append(NEW_LINE);
+            }
+            
+            if(result.getMoyenne() == null){
+                displayResult.append("Ecart type = null").append(NEW_LINE);
+            }else {
+                displayResult.append("Ecart type = ").append(result.getEcartType()).append(NEW_LINE);
+            }
         }
         
-        System.out.println("Moyenne = " + result.getMoyenne());
-        System.out.println("Variance = " + result.getVariance());
-        System.out.println("Ecart type = " + result.getEcartType());
+        
+        return displayResult.toString();
     }
 }

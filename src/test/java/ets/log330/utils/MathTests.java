@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public abstract class MathTests {
-
+    protected static final String NEW_LINE = System.getProperty("line.separator");
     static List<Double> dataOneColumn;
     static List<List<Double>> dataTwoColumn;
 

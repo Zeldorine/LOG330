@@ -36,7 +36,7 @@ public class CorrelationCalculator extends Calculator {
             exit(-1);
         }
 
-        displayResult(result);
+        System.out.println(getDisplayResult(result));
     }
 
     /**
@@ -44,12 +44,16 @@ public class CorrelationCalculator extends Calculator {
      *
      * @param result The result
      */
-    protected static void displayResult(CalculationResult result) {
-        if(result == null){
-            System.out.println("No result to display, result is null.");
+    protected static String getDisplayResult(CalculationResult result) {
+        StringBuilder displayResult = new StringBuilder();
+        
+        if(result == null || result.getCorrelation() == null){
+            displayResult.append("No result to display, result is null.");
+        } else {
+            displayResult.append("Correlation = ").append(result.getCorrelation()).append(NEW_LINE);
+            displayResult.append("Correlation au carre = ").append(Math.pow(result.getCorrelation(), 2)).append(NEW_LINE);
         }
         
-        System.out.println("Correlation = " + result.getCorrelation());
-        System.out.println("Correlation au carre = " + Math.pow(result.getCorrelation(), 2));
+        return displayResult.toString();
     }
 }

@@ -2,12 +2,13 @@ package ets.log330.Launcher;
 
 import ets.log330.utils.CalculationResult;
 
-
 /**
  *
  * @author Zeldorine
  */
 public abstract class Calculator {
+
+    protected static final String NEW_LINE = System.getProperty("line.separator");
 
     /**
      * Get the file path from args provided to the system.
@@ -16,6 +17,11 @@ public abstract class Calculator {
      * @return The file path.
      */
     protected static String getFileFromArgs(String[] args) {
+        if(args == null){
+            System.out.println("There are no args, cannot get file.");
+            return null;
+        }
+        
         int nbArgs = args.length;
 
         if (nbArgs == 0) {
@@ -29,10 +35,18 @@ public abstract class Calculator {
         }
     }
 
-    protected static void displayResult(CalculationResult result) {
-        System.out.println("Moyenne = " + result.getMoyenne());
-        System.out.println("Variance = " + result.getVariance());
-        System.out.println("Ecart type = " + result.getEcartType());
-        System.out.println("Correlation = " + result.getCorrelation());
+    protected static String getDisplayResult(CalculationResult result) {
+        StringBuilder displayResult = new StringBuilder();
+
+        if (result == null) {
+            displayResult.append("No result to display, result is null.");
+        } else {
+            displayResult.append("Moyenne = ").append(result.getMoyenne()).append(NEW_LINE);
+            displayResult.append("Variance = ").append(result.getVariance()).append(NEW_LINE);
+            displayResult.append("Ecart type = ").append(result.getEcartType()).append(NEW_LINE);
+            displayResult.append("Correlation = ").append(result.getCorrelation()).append(NEW_LINE);
+        }
+
+        return displayResult.toString();
     }
 }
