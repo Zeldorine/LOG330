@@ -55,8 +55,8 @@ public class CorrelationTests extends MathTests {
         assertNull(result.getVariance());
 
         List<List<Double>> data = new ArrayList(2);
-        data.add(new ArrayList<Double>(0));
-        data.add(new ArrayList<Double>(0));
+        data.add(new ArrayList(0));
+        data.add(new ArrayList(0));
 
         result = MathHelper.CalculateCorrelation(data);
         assertNotNull(result);
@@ -105,10 +105,6 @@ public class CorrelationTests extends MathTests {
         CalculationResult testAbs = new CalculationResult(Double.NEGATIVE_INFINITY);
         assertNotNull(result);
         assertEquals(new Double(Double.POSITIVE_INFINITY), testAbs.getCorrelation());
-        
-        testAbs = new CalculationResult(-0.4852);
-        assertNotNull(result);
-        assertEquals(new Double(0.4852), testAbs.getCorrelation());
     }
 
     @Test

@@ -33,7 +33,7 @@ public class CalculatorGetPathFromArgsTests {
         String path = Calculator.getFileFromArgs(new String[]{""});
         assertEquals("", path);
         
-        path = Calculator.getFileFromArgs(new String[]{"test.csv"});
-        assertEquals("test.csv", path);
+        path = Calculator.getFileFromArgs(new String[]{"data.csv"});
+        assertEquals("data.csv", path);
     }
 }

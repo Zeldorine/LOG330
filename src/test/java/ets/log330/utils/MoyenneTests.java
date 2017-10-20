@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  *
@@ -33,16 +32,14 @@ public class MoyenneTests extends MathTests {
     @Override
     public void testNullValue() {
         Double result = MathHelper.calculateMoyenne(null);
-        assertNotNull(result);
-        assertEquals(new Double(0), result);
+        assertNull(result);
     }
 
     @Test
     @Override
     public void testEmptyValue() {
         Double result = MathHelper.calculateMoyenne(new ArrayList<Double>(0));
-        assertNotNull(result);
-        assertEquals(new Double(0), result);
+        assertNull(result);
     }
 
     @Test

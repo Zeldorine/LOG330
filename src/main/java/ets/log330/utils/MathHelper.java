@@ -42,11 +42,11 @@ public abstract class MathHelper {
      * @return Moyenne.
      */
     static Double calculateMoyenne(List<Double> data) {
-        Double somme = new Double(0);
-
         if (data == null || data.isEmpty()) {
-            return somme;
+            return null;
         }
+
+        Double somme = new Double(0);
 
         for (Double element : data) {
             somme += element;
@@ -115,8 +115,8 @@ public abstract class MathHelper {
             System.out.println("Somme distance is null, cannot calculate variance");
             return null;
         }
-        
-        if(totalData < 2){
+
+        if (totalData < 2) {
             System.out.println("The number of total value cannot be less than 2. Actual value is: " + totalData);
             return null;
         }
@@ -181,11 +181,10 @@ public abstract class MathHelper {
             System.out.println("Data is null, cannot calculate sum.");
             return null;
         }
-        
-        if(data.isEmpty()){
+
+        if (data.isEmpty()) {
             return new Double(0);
         }
-        
 
         Double sum = new Double(0);
         for (Double value : data) {
@@ -206,8 +205,8 @@ public abstract class MathHelper {
             System.out.println("Data is null, cannot calculate sum.");
             return null;
         }
-        
-        if(data.isEmpty()){
+
+        if (data.isEmpty()) {
             return new Double(0);
         }
 
