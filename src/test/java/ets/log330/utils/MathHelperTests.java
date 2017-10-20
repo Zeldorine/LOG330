@@ -1,5 +1,6 @@
 package ets.log330.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -62,12 +63,30 @@ public class MathHelperTests {
 
     @Test
     public void testCalculateVarianceMaxValue() {
-
+        List<Double> data = new ArrayList();
+        data.add(Double.MAX_VALUE);
+        data.add(Double.MAX_VALUE);
+        data.add(Double.MAX_VALUE);
+        
+        CalculationResult result = MathHelper.calculate(data);
+        assertEquals(new Double(Double.POSITIVE_INFINITY), result.getMoyenne());
+        assertEquals(new Double(Double.POSITIVE_INFINITY), result.getVariance());
+        assertEquals(new Double(Double.POSITIVE_INFINITY), result.getEcartType());
     }
 
     @Test
     public void testCalculateCorrelationMaxValue() {
-
+        List<List<Double>> data = new ArrayList(); 
+        List<Double> column1 = new ArrayList();
+        List<Double> column2 = new ArrayList();
+        column1.add(Double.MAX_VALUE);
+        column2.add(Double.MAX_VALUE);
+        
+        data.add(column1);
+        data.add(column2);
+        
+        CalculationResult result = MathHelper.CalculateCorrelation(data);
+        assertEquals(new Double(Double.NaN), result.getCorrelation());
     }
 
     @Test
