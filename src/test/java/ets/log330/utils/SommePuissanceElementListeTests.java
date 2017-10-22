@@ -10,6 +10,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  *
@@ -127,7 +130,7 @@ public class SommePuissanceElementListeTests extends MathTests {
     @Test
     @Override
     public void testValide() {
-        List<List<Double>> data = getListTwoColumn();
+        List<List<Double>> data = getListTwoColumnCorrelation();
         Double result = MathHelper.calculateSumPowElementList(data.get(0), 1);
         assertNotNull(result);
         assertEquals(new Double(6389.0), result);

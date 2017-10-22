@@ -10,6 +10,9 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  *
@@ -123,7 +126,7 @@ public class SommeProduitElementListeTests extends MathTests {
     @Test
     @Override
     public void testValide() {
-        Double result = MathHelper.calculateSumProductElementBetweenList(getListTwoColumn());
+        Double result = MathHelper.calculateSumProductElementBetweenList(getListTwoColumnCorrelation());
         assertNotNull(result);
         assertEquals(new Double(702904.4), result);
     }

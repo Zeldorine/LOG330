@@ -15,11 +15,13 @@ import org.junit.Test;
 public abstract class MathTests {
     protected static final String NEW_LINE = System.getProperty("line.separator");
     static List<Double> dataOneColumn;
-    static List<List<Double>> dataTwoColumn;
+    static List<List<Double>> dataTwoColumnCorrelation;
+    static List<List<Double>> dataTwoColumnRegressionLineaire;
 
     static {
         dataOneColumn = FileReader.read("./src/test/java/ets/log330/resources/dataTest.csv").get(0);
-        dataTwoColumn = FileReader.read("./src/test/java/ets/log330/resources/dataTestCorrelation.csv");
+        dataTwoColumnCorrelation = FileReader.read("./src/test/java/ets/log330/resources/dataTestCorrelation.csv");
+        dataTwoColumnRegressionLineaire = FileReader.read("./src/test/java/ets/log330/resources/dataTestRegressionLineaire.csv");
     }
 
     @BeforeClass
@@ -39,11 +41,15 @@ public abstract class MathTests {
     }
 
     public List<Double> getListOneColumn() {
-        return new ArrayList<Double>(dataOneColumn);
+        return new ArrayList<>(dataOneColumn);
     }
     
-    public List<List<Double>> getListTwoColumn() {
-        return new ArrayList<List<Double>>(dataTwoColumn);
+    public List<List<Double>> getListTwoColumnCorrelation() {
+        return new ArrayList<>(dataTwoColumnCorrelation);
+    }
+    
+    public List<List<Double>> getListTwoColumnRegressionLineaire() {
+        return new ArrayList<>(dataTwoColumnRegressionLineaire);
     }
 
     @Test

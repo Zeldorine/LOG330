@@ -4,6 +4,9 @@ import ets.log330.utils.CalculationResult;
 import ets.log330.utils.MathTests;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  *

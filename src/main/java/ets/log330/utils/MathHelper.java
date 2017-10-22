@@ -228,4 +228,75 @@ public abstract class MathHelper {
 
         return sum;
     }
+
+    /**
+     * This method allow to calculate regression lineaire from a list of number.
+     *
+     * @param data A list of all data used to calculate regression lineaire.
+     * @return {@link utils.CalculationResult}.
+     */
+    public static CalculationResult calculateRegresionLineaire(List<List<Double>> data) {
+        if (data == null || data.isEmpty()) {
+            System.out.println("data is null, cannot calculate correlation");
+            return new CalculationResult(null);
+        }
+
+        if (data.size() != 2) {
+            System.out.println("To calculate correlation it should be 2 columns or " + data.size() + " was found");
+            return new CalculationResult(null);
+        }
+
+        Double xmoy = calculateMoyenne(data.get(0));
+        Double ymoy = calculateMoyenne(data.get(1));
+
+        Double b1 = calculateRegressionLineaireB1(data, xmoy, ymoy);
+        Double b0 = calculateRegressionLineaireB0(b1, xmoy, ymoy);
+
+        return new CalculationResult(b0, b1);
+    }
+
+    /**
+     * This method allow to calculate regression lineaire B1 from a list of
+     * number.
+     *
+     * @param data A list of all data used to calculate regression lineaire.
+     * @param xmoy x moyenne.
+     * @param ymoy y moyenne.
+     * @return B1.
+     */
+    static Double calculateRegressionLineaireB1(List<List<Double>> data, Double xmoy, Double ymoy) {
+        if (data == null || data.isEmpty() || xmoy == null || ymoy == null) {
+            System.out.println("data, xmoy or ymoy is null, cannot calculate correlation");
+            return null;
+        }
+
+        if (data.size() != 2) {
+            System.out.println("To calculate correlation it should be 2 columns or " + data.size() + " was found");
+            return null;
+        }
+
+        Double n = new Double(data.get(0).size());
+        Double sumXY = calculateSumProductElementBetweenList(data);
+        Double sumXCarre = calculateSumPowElementList(data.get(0), 2);
+
+        return (sumXY - (n * xmoy * ymoy)) / (sumXCarre - (n * xmoy * xmoy));
+    }
+
+    /**
+     * This method allow to calculate regression lineaire B0 from a list of
+     * number.
+     *
+     * @param b1 B1.
+     * @param xmoy x moyenne.
+     * @param ymoy y moyenne.
+     * @return B0.
+     */
+    static Double calculateRegressionLineaireB0(Double b1, Double xmoy, Double ymoy) {
+        if (b1 == null || xmoy == null || ymoy == null) {
+            System.out.println("Cannot calculate B0, xmoy, ymoy or B1 is null");
+            return null;
+        }
+
+        return ymoy - b1 * xmoy;
+    }
 }

@@ -16,6 +16,8 @@ public class CalculationResult {
     private Double variance;
     private Double ecartType;
     private Double correlation;
+    private Double regressionB1;
+    private Double regressionB0;
 
     public CalculationResult() {
     }
@@ -42,6 +44,16 @@ public class CalculationResult {
         if (correlation != null) {
             this.correlation = Math.abs(correlation);
         }
+    }
+
+    /**
+     * A result of calculation provided by {@link utils.MathHelper}.
+     *
+     * @param correlation The correlation.
+     */
+    public CalculationResult(Double regressionB0, Double regressionB1) {
+        this.regressionB0 = regressionB0;
+        this.regressionB1 = regressionB1;
     }
 
     /**
@@ -116,5 +128,41 @@ public class CalculationResult {
         if (correlation != null) {
             this.correlation = Math.abs(correlation);
         }
+    }
+
+    /**
+     * Get the regression B1.
+     *
+     * @return the regression B1.
+     */
+    public Double getRegressionB1() {
+        return regressionB1;
+    }
+
+    /**
+     * Set the regression B1.
+     *
+     * @param regressionB1 The regression B1.
+     */
+    public void setRegressionB1(Double regressionB1) {
+        this.regressionB1 = regressionB1;
+    }
+
+    /**
+     * Get the regression B0.
+     *
+     * @return the regression B0.
+     */
+    public Double getRegressionB0() {
+        return regressionB0;
+    }
+
+    /**
+     * Set the regression B0.
+     *
+     * @param regressionB0 The regression B0.
+     */
+    public void setRegressionB0(Double regressionB0) {
+        this.regressionB0 = regressionB0;
     }
 }

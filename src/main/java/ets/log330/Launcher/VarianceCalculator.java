@@ -49,13 +49,13 @@ public class VarianceCalculator extends Calculator {
                 displayResult.append("Moyenne = ").append(result.getMoyenne()).append(NEW_LINE);
             }
             
-            if(result.getMoyenne() == null){
+            if(result.getVariance()== null){
                 displayResult.append("Variance = null").append(NEW_LINE);
             }else {
                 displayResult.append("Variance = ").append(result.getVariance()).append(NEW_LINE);
             }
             
-            if(result.getMoyenne() == null){
+            if(result.getEcartType()== null){
                 displayResult.append("Ecart type = null").append(NEW_LINE);
             }else {
                 displayResult.append("Ecart type = ").append(result.getEcartType()).append(NEW_LINE);
