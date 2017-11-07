@@ -43,6 +43,7 @@ public class CorrelationCalculator extends Calculator {
      * Display result after calculation
      *
      * @param result The result
+     * @return 
      */
     protected static String getDisplayResult(CalculationResult result) {
         StringBuilder displayResult = new StringBuilder();

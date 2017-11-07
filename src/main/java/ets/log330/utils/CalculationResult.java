@@ -49,7 +49,8 @@ public class CalculationResult {
     /**
      * A result of calculation provided by {@link utils.MathHelper}.
      *
-     * @param correlation The correlation.
+     * @param regressionB0
+     * @param regressionB1
      */
     public CalculationResult(Double regressionB0, Double regressionB1) {
         this.regressionB0 = regressionB0;

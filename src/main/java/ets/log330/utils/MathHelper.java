@@ -73,7 +73,7 @@ public abstract class MathHelper {
             return null;
         }
 
-        List<Double> distances = new ArrayList<Double>(data.size());
+        List<Double> distances = new ArrayList<>(data.size());
 
         for (Double element : data) {
             distances.add(Math.pow(element - moyenne, 2));

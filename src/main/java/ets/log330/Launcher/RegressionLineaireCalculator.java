@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import static java.lang.System.exit;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -45,6 +43,7 @@ public class RegressionLineaireCalculator extends Calculator {
      * Display result after calculation
      *
      * @param result The result
+     * @return 
      */
     protected static String getDisplayResult(CalculationResult result) {
         StringBuilder displayResult = new StringBuilder();

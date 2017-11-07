@@ -60,8 +60,8 @@ public abstract class FileReader {
             Double totalElement = Double.parseDouble(content.get(0));
 
             if (totalElement == 0) {
-                List<List<Double>> data = new LinkedList<List<Double>>();
-                data.add(new ArrayList<Double>(0));
+                List<List<Double>> data = new LinkedList<>();
+                data.add(new ArrayList<>(0));
                 return data;
             } else {
                 System.out.println("The total of number (lines) doesn't match with the total specified in the first line, path: " + path);
@@ -72,18 +72,18 @@ public abstract class FileReader {
         }
 
         String currentLine = null;
-        List<List<Double>> data = null;
+        List<List<Double>> data;
         int totalLine = 0;
 
         try {
             int nbColumn = content.get(1).split(SEPARATOR).length;
             totalLine = Integer.parseInt(content.get(0).split(SEPARATOR)[0]);
-            data = new LinkedList<List<Double>>();
+            data = new LinkedList<>();
             currentLine = content.get(0);
             content.remove(0); // Remove first line which is total number in the file.
 
             for (int i = 0; i < nbColumn; i++) {
-                data.add(new ArrayList<Double>(content.size()));
+                data.add(new ArrayList<>(content.size()));
             }
 
             for (String line : content) {
