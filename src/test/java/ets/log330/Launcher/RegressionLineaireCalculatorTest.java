@@ -99,4 +99,42 @@ public class RegressionLineaireCalculatorTest extends MathTests {
 
         assertEquals(displayResult.toString(), RegressionLineaireCalculator.getDisplayResult(result));
     }
+
+    @Test
+    public void calculeUserInputValideBorneInferieure() {
+        CalculationResult result = new CalculationResult(-22.552532752034153, 1.727932426206986);
+        RegressionLineaireCalculator.calculeUserInput(true, ""+Double.MIN_VALUE, result);
+        RegressionLineaireCalculator.calculeUserInput(true, ""+Double.NEGATIVE_INFINITY, result);
+    }
+
+    @Test
+    public void calculeUserInputValideBorneSuperieure() {
+        CalculationResult result = new CalculationResult(-22.552532752034153, 1.727932426206986);
+        RegressionLineaireCalculator.calculeUserInput(true, ""+Double.MAX_VALUE, result);
+        RegressionLineaireCalculator.calculeUserInput(true, ""+Double.POSITIVE_INFINITY, result);
+    }
+
+    @Test
+    public void calculeUserInputValideNotANumber() {
+        CalculationResult result = new CalculationResult(-22.552532752034153, 1.727932426206986);
+        RegressionLineaireCalculator.calculeUserInput(true, ""+Double.NaN, result);
+    }
+
+    @Test
+    public void calculeUserInputValideNull() {
+        CalculationResult result = new CalculationResult(-22.552532752034153, 1.727932426206986);
+        RegressionLineaireCalculator.calculeUserInput(true, null, result);
+    }
+
+    @Test
+    public void calculeUserInputValideEmpty() {
+        CalculationResult result = new CalculationResult(-22.552532752034153, 1.727932426206986);
+        RegressionLineaireCalculator.calculeUserInput(true, "", result);
+    }
+
+    @Test
+    public void calculeUserInputValide() {
+        CalculationResult result = new CalculationResult(-22.552532752034153, 1.727932426206986);
+        RegressionLineaireCalculator.calculeUserInput(true, "12.25", result);
+    }
 }

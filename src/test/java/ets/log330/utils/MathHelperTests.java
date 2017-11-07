@@ -154,4 +154,94 @@ public class MathHelperTests {
         assertEquals(new Double(-22.552532752034153), result.getRegressionB0());
         assertEquals(new Double(1.727932426206986), result.getRegressionB1());
     }
+    
+    @Test
+    public void testCalculateValueWithLinearRegressionBorneInferieur() {
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestRegressionLineaire.csv");
+        CalculationResult result = MathHelper.calculateRegresionLineaire(data);
+        assertNotNull(result);
+        
+        Double valueY = MathHelper.calculateValueWithLinearRegression(true, Double.MIN_VALUE, result);
+        Double valueX = MathHelper.calculateValueWithLinearRegression(false, Double.MIN_VALUE, result);
+        
+        assertNotNull(valueX);
+        assertNotNull(valueY);
+        assertEquals(Double.valueOf("13.051744622641063"), valueX);
+        assertEquals(Double.valueOf("-22.552532752034153"), valueY);
+        
+        valueY = MathHelper.calculateValueWithLinearRegression(true, Double.NEGATIVE_INFINITY, result);
+        valueX = MathHelper.calculateValueWithLinearRegression(true, Double.NEGATIVE_INFINITY, result);
+        
+        assertNotNull(valueX);
+        assertNotNull(valueY);
+        assertEquals(Double.valueOf(Double.NEGATIVE_INFINITY), valueX);
+        assertEquals(Double.valueOf(Double.NEGATIVE_INFINITY), valueY);
+    }
+    
+    @Test
+    public void testCalculateValueWithLinearRegressionBorneSuperieure() {
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestRegressionLineaire.csv");
+        CalculationResult result = MathHelper.calculateRegresionLineaire(data);
+        assertNotNull(result);
+        
+        Double valueY = MathHelper.calculateValueWithLinearRegression(true, Double.MAX_VALUE, result);
+        Double valueX = MathHelper.calculateValueWithLinearRegression(false, Double.MAX_VALUE, result);
+        
+        assertNotNull(valueX);
+        assertNotNull(valueY);
+        
+        assertEquals(Double.valueOf("1.0403723592411902E308"), valueX);
+        assertEquals(new Double(Double.POSITIVE_INFINITY), valueY);
+        
+        valueY = MathHelper.calculateValueWithLinearRegression(true, Double.POSITIVE_INFINITY, result);
+        valueX = MathHelper.calculateValueWithLinearRegression(true, Double.POSITIVE_INFINITY, result);
+        
+        assertNotNull(valueX);
+        assertNotNull(valueY);
+        assertEquals(Double.valueOf(Double.POSITIVE_INFINITY), valueX);
+        assertEquals(Double.valueOf(Double.POSITIVE_INFINITY), valueY);
+    }
+    
+    @Test
+    public void testCalculateValueWithLinearRegressionNotANumber() {
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestRegressionLineaire.csv");
+        CalculationResult result = MathHelper.calculateRegresionLineaire(data);
+        assertNotNull(result);
+        
+        Double valueY = MathHelper.calculateValueWithLinearRegression(true, Double.NaN, result);
+        Double valueX = MathHelper.calculateValueWithLinearRegression(false, Double.NaN, result);
+        
+        assertNotNull(valueX);
+        assertNotNull(valueY);
+        assertEquals(Double.valueOf(Double.NaN), valueX);
+        assertEquals(Double.valueOf(Double.NaN), valueY);
+    }
+    
+    @Test
+    public void testCalculateValueWithLinearRegressionNUllValue() {
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestRegressionLineaire.csv");
+        CalculationResult result = MathHelper.calculateRegresionLineaire(data);
+        assertNotNull(result);
+        
+        Double valueY = MathHelper.calculateValueWithLinearRegression(true, null, result);
+        Double valueX = MathHelper.calculateValueWithLinearRegression(false, null, result);
+        
+        assertNull(valueX);
+        assertNull(valueY);
+    }
+    
+    @Test
+    public void testCalculateValueWithLinearRegressionValide() {
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestRegressionLineaire.csv");
+        CalculationResult result = MathHelper.calculateRegresionLineaire(data);
+        assertNotNull(result);
+        
+        Double valueY = MathHelper.calculateValueWithLinearRegression(true, 12.1254, result);
+        Double valueX = MathHelper.calculateValueWithLinearRegression(false, 12.1254, result);
+        
+        assertNotNull(valueX);
+        assertNotNull(valueY);
+        assertEquals(Double.valueOf("20.06903292402254"), valueX);
+        assertEquals(Double.valueOf("-1.6006609113039652"), valueY);
+    }
 }

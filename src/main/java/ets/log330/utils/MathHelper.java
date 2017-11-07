@@ -299,4 +299,34 @@ public abstract class MathHelper {
 
         return ymoy - b1 * xmoy;
     }
+
+    /**
+     * Allow to calculate the Y value from a X and regression lineraire coef (y
+     * = ax+b)
+     *
+     * @param isX To know if the methode calcul X or Y
+     * @param value The value can correspond to a X or Y depends on isX true or
+     * false.
+     * @param result Regression lineaire coef
+     * @return X value calculate from coef and Y
+     */
+    public static Double calculateValueWithLinearRegression(boolean isX, Double value, CalculationResult result) {
+        if(value == null){ 
+            System.out.println("The value is null, cannot calcule " + (isX ? "Y" : "X") + " value");
+            return null;
+        }
+        
+        if(result == null || result.getRegressionB1() == null || result.getRegressionB0() == null){
+            System.out.println("The linear regression coefs are null, cannot calcule " + (isX ? "Y" : "X") + " value");
+            return null;
+        }
+        
+        if (isX) {
+            // Search y : b1*x + b0
+            return result.getRegressionB1() * value + result.getRegressionB0();
+        } else {
+            // Search x : y/b1 - b0
+            return (value - result.getRegressionB0()) / result.getRegressionB1();
+        }
+    }
 }
