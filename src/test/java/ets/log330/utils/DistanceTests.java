@@ -11,9 +11,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -65,7 +62,7 @@ public class DistanceTests extends MathTests {
     @Test
     @Override
     public void testNotANumberValue() {
-        List<Double> nan = new ArrayList<Double>(1);
+        List<Double> nan = new ArrayList<>(1);
         nan.add(Double.NaN);
 
         List<Double> result = MathHelper.calculateDistance(nan, Double.NaN);
@@ -93,7 +90,7 @@ public class DistanceTests extends MathTests {
     @Test
     @Override
     public void testBorneInferieure() {
-        List data = new ArrayList<Double>(5);
+        List data = new ArrayList<>(5);
         data.add(new Double(1));
         data.add(new Double(1));
         data.add(new Double(1));
@@ -107,7 +104,7 @@ public class DistanceTests extends MathTests {
             assertEquals(new Double(0), distance);
         }
 
-        List<Double> infinityNegative = new ArrayList<Double>(1);
+        List<Double> infinityNegative = new ArrayList<>(1);
         infinityNegative.add(Double.NEGATIVE_INFINITY);
         infinityNegative.add(Double.NEGATIVE_INFINITY);
         infinityNegative.add(Double.NEGATIVE_INFINITY);
@@ -119,7 +116,7 @@ public class DistanceTests extends MathTests {
             assertEquals(new Double(Double.NaN), distance);
         }
 
-        List<Double> minValue = new ArrayList<Double>(1);
+        List<Double> minValue = new ArrayList<>(1);
         minValue.add(Double.MIN_VALUE);
         minValue.add(Double.MIN_VALUE);
         minValue.add(Double.MIN_VALUE);
@@ -169,7 +166,7 @@ public class DistanceTests extends MathTests {
             }
         }
 
-        List<Double> maxValues = new ArrayList<Double>(1);
+        List<Double> maxValues = new ArrayList<>(1);
         maxValues.add(Double.MAX_VALUE);
         List<Double> resultInfinity = MathHelper.calculateDistance(maxValues, Double.MAX_VALUE);
         assertNotNull(resultInfinity);
@@ -178,7 +175,7 @@ public class DistanceTests extends MathTests {
             assertEquals(new Double(0), distance);
         }
 
-        List<Double> infinity = new ArrayList<Double>(1);
+        List<Double> infinity = new ArrayList<>(1);
         infinity.add(Double.POSITIVE_INFINITY);
         resultInfinity = MathHelper.calculateDistance(infinity, Double.POSITIVE_INFINITY);
         assertNotNull(resultInfinity);

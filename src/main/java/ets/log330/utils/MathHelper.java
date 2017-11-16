@@ -155,16 +155,23 @@ public abstract class MathHelper {
             System.out.println("To calculate correlation it should be 2 columns or " + data.size() + " was found");
             return new CalculationResult(null);
         }
+        
+        Double correlation = null;
 
-        Double n = new Double(data.get(0).size());
-        Double sumXY = calculateSumProductElementBetweenList(data);
-        Double sumX = calculateSumPowElementList(data.get(0), 1);
-        Double sumY = calculateSumPowElementList(data.get(1), 1);
-        Double sumXCarre = calculateSumPowElementList(data.get(0), 2);
-        Double sumYCarre = calculateSumPowElementList(data.get(1), 2);
+        try {
+            Double n = new Double(data.get(0).size());
+            Double sumXY = calculateSumProductElementBetweenList(data);
+            Double sumX = calculateSumPowElementList(data.get(0), 1);
+            Double sumY = calculateSumPowElementList(data.get(1), 1);
+            Double sumXCarre = calculateSumPowElementList(data.get(0), 2);
+            Double sumYCarre = calculateSumPowElementList(data.get(1), 2);
 
-        Double correlation = ((n * sumXY) - (sumX * sumY)) / (Math.sqrt(((n * sumXCarre) - Math.pow(sumX, 2)) * (n * sumYCarre - Math.pow(sumY, 2))));
-
+            correlation = ((n * sumXY) - (sumX * sumY)) / (Math.sqrt(((n * sumXCarre) - Math.pow(sumX, 2)) * (n * sumYCarre - Math.pow(sumY, 2))));
+        } catch (Exception e) {
+            System.out.println("Cannot calculate correlation. Error " + e.getMessage());
+            return new CalculationResult(null);
+        }
+        
         return new CalculationResult(correlation);
     }
 
@@ -311,16 +318,16 @@ public abstract class MathHelper {
      * @return X value calculate from coef and Y
      */
     public static Double calculateValueWithLinearRegression(boolean isX, Double value, CalculationResult result) {
-        if(value == null){ 
+        if (value == null) {
             System.out.println("The value is null, cannot calcule " + (isX ? "Y" : "X") + " value");
             return null;
         }
-        
-        if(result == null || result.getRegressionB1() == null || result.getRegressionB0() == null){
+
+        if (result == null || result.getRegressionB1() == null || result.getRegressionB0() == null) {
             System.out.println("The linear regression coefs are null, cannot calcule " + (isX ? "Y" : "X") + " value");
             return null;
         }
-        
+
         if (isX) {
             // Search y : b1*x + b0
             return result.getRegressionB1() * value + result.getRegressionB0();
@@ -328,5 +335,34 @@ public abstract class MathHelper {
             // Search x : y/b1 - b0
             return (value - result.getRegressionB0()) / result.getRegressionB1();
         }
+    }
+
+    public static List<Double> sumAndMergeList(List<List<Double>> data) {
+        if (data == null) {
+            System.out.println("The data is null, cannot merge list ");
+            return null;
+        }
+
+        if (data.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        if (data.size() == 1) {
+            return data.get(0);
+        }
+
+        int nbElements = data.get(0).size();
+        List<Double> mergedList = new ArrayList<>(nbElements);
+
+        for (int j = 0; j < nbElements; j++) {
+            Double sum = new Double(0);
+            for (int i = 0; i < data.size(); i++) {
+                sum += data.get(i).get(j);
+            }
+
+            mergedList.add(sum);
+        }
+
+        return mergedList;
     }
 }

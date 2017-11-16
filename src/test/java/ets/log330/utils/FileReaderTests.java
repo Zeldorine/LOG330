@@ -118,4 +118,22 @@ public class FileReaderTests {
         assertEquals(data.get(0).size(), 10);
         assertEquals(data.get(1).size(), 10);
     }
+
+    @Test
+    public void testFileChecktotalWrong() {
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestDifferentColumnSize.csv", true);
+        assertNull(data);
+    }
+
+    @Test
+    public void testFileChecktotalValide() {
+        List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestDifferentColumnSize.csv", false);
+        assertNull(data);
+
+        int[] linesToRemove = new int[]{0,1};
+        int[] columnsToRemove = new int[]{0};
+        data = FileReader.read("./src/test/java/ets/log330/resources/dataTestSameColumnSize.csv", false, linesToRemove, columnsToRemove);
+        assertNotNull(data);
+        assertEquals(7, data.size());
+    }
 }

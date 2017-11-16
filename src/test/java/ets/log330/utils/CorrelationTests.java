@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -76,10 +73,10 @@ public class CorrelationTests extends MathTests {
         // Min Value
         List<List<Double>> data = new ArrayList(2);
 
-        List<Double> column1 = new ArrayList<Double>(1);
+        List<Double> column1 = new ArrayList<>(1);
         column1.add(Double.MIN_VALUE);
 
-        List<Double> column2 = new ArrayList<Double>(1);
+        List<Double> column2 = new ArrayList<>(1);
         column2.add(Double.MIN_VALUE);
 
         data.add(column1);
@@ -92,10 +89,10 @@ public class CorrelationTests extends MathTests {
         // Negative Infinity
         data = new ArrayList(2);
 
-        column1 = new ArrayList<Double>(1);
+        column1 = new ArrayList<>(1);
         column1.add(Double.NEGATIVE_INFINITY);
 
-        column2 = new ArrayList<Double>(1);
+        column2 = new ArrayList<>(1);
         column2.add(Double.NEGATIVE_INFINITY);
 
         data.add(column1);
@@ -116,10 +113,10 @@ public class CorrelationTests extends MathTests {
         // Max Value
         List<List<Double>> data = new ArrayList(2);
 
-        List<Double> column1 = new ArrayList<Double>(1);
+        List<Double> column1 = new ArrayList<>(1);
         column1.add(Double.MAX_VALUE);
 
-        List<Double> column2 = new ArrayList<Double>(1);
+        List<Double> column2 = new ArrayList<>(1);
         column2.add(Double.MAX_VALUE);
 
         data.add(column1);
@@ -132,10 +129,10 @@ public class CorrelationTests extends MathTests {
         // Positive Infinity
         data = new ArrayList(2);
 
-        column1 = new ArrayList<Double>(1);
+        column1 = new ArrayList<>(1);
         column1.add(Double.POSITIVE_INFINITY);
 
-        column2 = new ArrayList<Double>(1);
+        column2 = new ArrayList<>(1);
         column2.add(Double.POSITIVE_INFINITY);
 
         data.add(column1);
@@ -160,10 +157,10 @@ public class CorrelationTests extends MathTests {
         // NaN * NaN
         List<List<Double>> data = new ArrayList(2);
 
-        List<Double> column1 = new ArrayList<Double>(1);
+        List<Double> column1 = new ArrayList<>(1);
         column1.add(Double.NaN);
 
-        List<Double> column2 = new ArrayList<Double>(1);
+        List<Double> column2 = new ArrayList<>(1);
         column2.add(Double.NaN);
 
         data.add(column1);
@@ -176,10 +173,10 @@ public class CorrelationTests extends MathTests {
         // Nan * number
         data = new ArrayList(2);
 
-        column1 = new ArrayList<Double>(1);
+        column1 = new ArrayList<>(1);
         column1.add(Double.NaN);
 
-        column2 = new ArrayList<Double>(1);
+        column2 = new ArrayList<>(1);
         column2.add(Double.POSITIVE_INFINITY);
 
         data.add(column1);
