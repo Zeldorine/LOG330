@@ -32,40 +32,74 @@ public class CorrelationEffortNote extends Calculator {
 
         List<Double> notes = data.get(data.size() - 1);
         data.remove(data.size() - 1);
-        List<List<Double>> dataToCalculate = new ArrayList<>(2);
-        dataToCalculate.add(MathHelper.sumAndMergeList(data));
-        dataToCalculate.add(notes);
+        List<List<Double>> correlationData = new ArrayList<>(2);
+        List<List<Double>> regressionData = new ArrayList<>(2);
+        
+        correlationData.add(MathHelper.sumAndMergeList(data, 1));
+        correlationData.add(notes);
+        
+        regressionData.add(MathHelper.sumAndMergeList(data, data.size()));
+        regressionData.add(notes);
 
-        if (dataToCalculate.get(0) == null || dataToCalculate.get(0).isEmpty()) {
+        if (correlationData.get(0) == null || correlationData.get(0).isEmpty()) {
             System.out.println("Data cannot be null to calculate correlation, exit...");
             exit(-1);
         }
 
-        CalculationResult result = MathHelper.CalculateCorrelation(dataToCalculate);
+        CalculationResult correlationResult = MathHelper.CalculateCorrelation(correlationData);
+        CalculationResult regressionResult = MathHelper.calculateRegresionLineaire(regressionData);
+        
 
-        if (result == null) {
-            System.out.println("Calculation result is null, cannot display results, exit...");
-            exit(-1);
-        }
-
-        System.out.println(getDisplayResult(result));
+        System.out.println(getDisplayResult(correlationResult, regressionResult));
     }
 
+    protected static String getDisplayResult(CalculationResult correlationResult, CalculationResult regressionResult){
+        return getDisplayCorrelationResult(correlationResult) + getDisplayRegressionResult(regressionResult);
+    }
+    
     /**
      * Display result after calculation
      *
-     * @param result The result
+     * @param correlationResult The result
      * @return
      */
-    protected static String getDisplayResult(CalculationResult result) {
+    private static String getDisplayCorrelationResult(CalculationResult correlationResult) {
         StringBuilder displayResult = new StringBuilder();
 
-        if (result == null || result.getCorrelation() == null) {
-            displayResult.append("No result to display, result is null.");
+        if (correlationResult == null || correlationResult.getCorrelation() == null) {
+            displayResult.append("No correlation result to display, result is null.");
         } else {
-            displayResult.append("Correlation = ").append(result.getCorrelation()).append(NEW_LINE);
-            displayResult.append("Correlation au carre = ").append(Math.pow(result.getCorrelation(), 2)).append(NEW_LINE);
-            displayResult.append("Interprétation : ").append(CorrelationInterval.getInterpretationFromValue(result.getCorrelation())).append(NEW_LINE);
+            displayResult.append("Correlation = ").append(correlationResult.getCorrelation()).append(NEW_LINE);
+            displayResult.append("Correlation au carre = ").append(Math.pow(correlationResult.getCorrelation(), 2)).append(NEW_LINE);
+            displayResult.append("Interprétation : ").append(CorrelationInterval.getInterpretationFromValue(correlationResult.getCorrelation())).append(NEW_LINE);
+        }
+        
+        return displayResult.toString();
+    }
+    
+    private static String getDisplayRegressionResult(CalculationResult regressionResult) {
+        StringBuilder displayResult = new StringBuilder();
+
+        if (regressionResult == null) {
+            displayResult.append("No regression to display, result is null.");
+        } else {
+            if (regressionResult.getRegressionB0() == null) {
+                displayResult.append("B0 (origine) = null").append(NEW_LINE);
+            } else {
+                displayResult.append("B0 (origine) = ").append(regressionResult.getRegressionB0()).append(NEW_LINE);
+            }
+
+            if (regressionResult.getRegressionB1() == null) {
+                displayResult.append("B1 (pente) = null").append(NEW_LINE);
+            } else {
+                displayResult.append("B1 (pente) = ").append(regressionResult.getRegressionB1()).append(NEW_LINE);
+            }
+
+            if (regressionResult.getRegressionB0() == null || regressionResult.getRegressionB1() == null) {
+                displayResult.append("Equation is null").append(NEW_LINE);
+            } else {
+                displayResult.append("y(x) = ").append(regressionResult.getRegressionB0()).append(" + x*").append(regressionResult.getRegressionB1()).append(NEW_LINE);
+            }
         }
 
         return displayResult.toString();

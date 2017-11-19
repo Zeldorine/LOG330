@@ -58,21 +58,15 @@ public abstract class MathTests {
         return new ArrayList<>(dataTwoColumnRegressionLineaire);
     }
 
-    @Test
     public abstract void testNullValue();
 
-    @Test
     public abstract void testEmptyValue();
 
-    @Test
     public abstract void testNotANumberValue();
 
-    @Test
     public abstract void testBorneInferieure();
 
-    @Test
     public abstract void testBorneSuperieure();
 
-    @Test
     public abstract void testValide();
 }

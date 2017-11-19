@@ -247,7 +247,7 @@ public class MathHelperTests {
 
     @Test
     public void testSumAndMergeListNull() {
-        List<Double> result = MathHelper.sumAndMergeList(null);
+        List<Double> result = MathHelper.sumAndMergeList(null, 1);
         assertNull(result);
     }
 
@@ -255,7 +255,7 @@ public class MathHelperTests {
     public void testSumAndMergeListEmpty() {
         List<List<Double>> data = new ArrayList();
 
-        List<Double> result = MathHelper.sumAndMergeList(data);
+        List<Double> result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(0, result.size());
 
@@ -264,7 +264,7 @@ public class MathHelperTests {
         data.add(column1);
         data.add(column2);
 
-        result = MathHelper.sumAndMergeList(data);
+        result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(0, result.size());
     }
@@ -280,7 +280,7 @@ public class MathHelperTests {
         column1.add(Double.NaN);
         column2.add(Double.NaN);
 
-        List<Double> result = MathHelper.sumAndMergeList(data);
+        List<Double> result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(1, result.size());
         assertEquals(new Double(Double.NaN), result.get(0));
@@ -288,7 +288,7 @@ public class MathHelperTests {
         column1.add(10.0);
         column2.add(Double.NaN);
 
-        result = MathHelper.sumAndMergeList(data);
+        result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(2, result.size());
         assertEquals(new Double(Double.NaN), result.get(1));
@@ -305,15 +305,20 @@ public class MathHelperTests {
         column1.add(Double.MIN_VALUE);
         column2.add(Double.MIN_VALUE);
 
-        List<Double> result = MathHelper.sumAndMergeList(data);
+        List<Double> result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(1, result.size());
         assertEquals(new Double(Double.MIN_VALUE * 2), result.get(0));
+        
+        result = MathHelper.sumAndMergeList(data, 0);
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals(new Double(Double.POSITIVE_INFINITY), result.get(0));
 
         column1.add(10.0);
         column2.add(Double.MIN_VALUE);
 
-        result = MathHelper.sumAndMergeList(data);
+        result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(2, result.size());
         assertEquals(new Double(Double.MIN_VALUE + 10.0), result.get(1));
@@ -321,7 +326,7 @@ public class MathHelperTests {
         column1.add(Double.NEGATIVE_INFINITY);
         column2.add(Double.NEGATIVE_INFINITY);
 
-        result = MathHelper.sumAndMergeList(data);
+        result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(3, result.size());
         assertEquals(new Double(Double.NEGATIVE_INFINITY), result.get(2));
@@ -329,7 +334,12 @@ public class MathHelperTests {
         column1.add(10.0);
         column2.add(Double.NEGATIVE_INFINITY);
 
-        result = MathHelper.sumAndMergeList(data);
+        result = MathHelper.sumAndMergeList(data, 1);
+        assertNotNull(result);
+        assertEquals(4, result.size());
+        assertEquals(new Double(Double.NEGATIVE_INFINITY), result.get(3));
+        
+        result = MathHelper.sumAndMergeList(data, 0);
         assertNotNull(result);
         assertEquals(4, result.size());
         assertEquals(new Double(Double.NEGATIVE_INFINITY), result.get(3));
@@ -346,7 +356,7 @@ public class MathHelperTests {
         column1.add(Double.MAX_VALUE);
         column2.add(Double.MAX_VALUE);
 
-        List<Double> result = MathHelper.sumAndMergeList(data);
+        List<Double> result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(1, result.size());
         assertEquals(new Double(Double.MAX_VALUE * 2), result.get(0));
@@ -354,7 +364,7 @@ public class MathHelperTests {
         column1.add(10.0);
         column2.add(Double.MAX_VALUE);
 
-        result = MathHelper.sumAndMergeList(data);
+        result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(2, result.size());
         assertEquals(new Double(Double.MAX_VALUE + 10.0), result.get(1));
@@ -362,7 +372,7 @@ public class MathHelperTests {
         column1.add(Double.POSITIVE_INFINITY);
         column2.add(Double.POSITIVE_INFINITY);
 
-        result = MathHelper.sumAndMergeList(data);
+        result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(3, result.size());
         assertEquals(new Double(Double.POSITIVE_INFINITY), result.get(2));
@@ -370,7 +380,7 @@ public class MathHelperTests {
         column1.add(10.0);
         column2.add(Double.POSITIVE_INFINITY);
 
-        result = MathHelper.sumAndMergeList(data);
+        result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(4, result.size());
         assertEquals(new Double(Double.POSITIVE_INFINITY), result.get(3));
@@ -416,7 +426,7 @@ public class MathHelperTests {
         sumList.add(11.759999999999998);
 
         List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestMultipleColumns.csv", false);
-        List<Double> result = MathHelper.sumAndMergeList(data);
+        List<Double> result = MathHelper.sumAndMergeList(data, 1);
         assertNotNull(result);
         assertEquals(35, result.size());
 

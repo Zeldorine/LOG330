@@ -337,7 +337,7 @@ public abstract class MathHelper {
         }
     }
 
-    public static List<Double> sumAndMergeList(List<List<Double>> data) {
+    public static List<Double> sumAndMergeList(List<List<Double>> data, int divisor) {
         if (data == null) {
             System.out.println("The data is null, cannot merge list ");
             return null;
@@ -360,7 +360,7 @@ public abstract class MathHelper {
                 sum += data.get(i).get(j);
             }
 
-            mergedList.add(sum);
+            mergedList.add((sum/divisor));
         }
 
         return mergedList;
