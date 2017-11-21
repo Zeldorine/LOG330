@@ -43,7 +43,7 @@ public class MathHelperTests {
 
     @Test
     public void testCalculateCorrelationNullList() {
-        assertNull(MathHelper.CalculateCorrelation(null).getCorrelation());
+        assertNull(MathHelper.calculateCorrelation(null).getCorrelation());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class MathHelperTests {
     @Test
     public void testCalculateCorrelationZeroValue() {
         List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestOneValueGood.csv");
-        CalculationResult result = MathHelper.CalculateCorrelation(data);
+        CalculationResult result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertEquals(null, result.getCorrelation());
     }
@@ -103,7 +103,7 @@ public class MathHelperTests {
         data.add(column1);
         data.add(column2);
 
-        CalculationResult result = MathHelper.CalculateCorrelation(data);
+        CalculationResult result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertEquals(new Double(Double.NaN), result.getCorrelation());
     }
@@ -138,7 +138,7 @@ public class MathHelperTests {
     @Test
     public void testCalculateCorrelation() {
         List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/dataTestCorrelation.csv");
-        CalculationResult result = MathHelper.CalculateCorrelation(data);
+        CalculationResult result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertEquals(new Double(0.9559205282352726), result.getCorrelation());
         assertNull(result.getEcartType());

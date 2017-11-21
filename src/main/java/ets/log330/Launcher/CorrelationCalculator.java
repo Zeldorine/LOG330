@@ -29,23 +29,24 @@ public class CorrelationCalculator extends Calculator {
             exit(-1);
         }
         
-        CalculationResult result = MathHelper.CalculateCorrelation(data);
+        CalculationResult result = MathHelper.calculateCorrelation(data);
 
         if (result == null) {
             System.out.println("Calculation result is null, cannot display results, exit...");
             exit(-1);
         }
 
-        System.out.println(getDisplayResult(result));
+        System.out.println(new CorrelationCalculator().getDisplayResult(result));
     }
 
     /**
      * Display result after calculation
      *
-     * @param result The result
-     * @return 
+     * @param result The correlation result result
+     * @return A String Containing all correlation result
      */
-    protected static String getDisplayResult(CalculationResult result) {
+    @Override
+    protected String getDisplayResult(CalculationResult result) {
         StringBuilder displayResult = new StringBuilder();
         
         if(result == null || result.getCorrelation() == null){

@@ -145,7 +145,7 @@ public abstract class MathHelper {
      * @param data A list of all data used to calculate correlation.
      * @return {@link utils.CalculationResult}.
      */
-    public static CalculationResult CalculateCorrelation(List<List<Double>> data) {
+    public static CalculationResult calculateCorrelation(List<List<Double>> data) {
         if (data == null || data.isEmpty()) {
             System.out.println("data is null, cannot calculate correlation");
             return new CalculationResult(null);
@@ -337,6 +337,12 @@ public abstract class MathHelper {
         }
     }
 
+    /**
+     * Do the sum of each element line by line and divide the sum by the divisor.
+     * @param data The list of list to add and merge
+     * @param divisor The divisor to divide the sum of all elements
+     * @return A list with all value added and divide by the divisor 
+     */
     public static List<Double> sumAndMergeList(List<List<Double>> data, int divisor) {
         if (data == null) {
             System.out.println("The data is null, cannot merge list ");

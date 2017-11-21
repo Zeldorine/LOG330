@@ -35,7 +35,7 @@ public class RegressionLineaireCalculator extends Calculator {
             exit(-1);
         }
 
-        System.out.println(getDisplayResult(result));
+        System.out.println(new RegressionLineaireCalculator().getDisplayResult(result));
         userInputCalculation(result);
     }
 
@@ -45,7 +45,8 @@ public class RegressionLineaireCalculator extends Calculator {
      * @param result The result
      * @return 
      */
-    protected static String getDisplayResult(CalculationResult result) {
+    @Override
+    protected String getDisplayResult(CalculationResult result) {
         StringBuilder displayResult = new StringBuilder();
 
         if (result == null) {

@@ -21,7 +21,7 @@ public class CorrelationEffortNote extends Calculator {
      */
     public static void main(String[] args) {
         String path = getFileFromArgs(args);
-        int[] linesToRemove = new int[]{0,1};
+        int[] linesToRemove = new int[]{0, 1};
         int[] columnsToRemove = new int[]{0};
         List<List<Double>> data = FileReader.read(path, false, linesToRemove, columnsToRemove);
 
@@ -34,10 +34,10 @@ public class CorrelationEffortNote extends Calculator {
         data.remove(data.size() - 1);
         List<List<Double>> correlationData = new ArrayList<>(2);
         List<List<Double>> regressionData = new ArrayList<>(2);
-        
+
         correlationData.add(MathHelper.sumAndMergeList(data, 1));
         correlationData.add(notes);
-        
+
         regressionData.add(MathHelper.sumAndMergeList(data, data.size()));
         regressionData.add(notes);
 
@@ -46,22 +46,27 @@ public class CorrelationEffortNote extends Calculator {
             exit(-1);
         }
 
-        CalculationResult correlationResult = MathHelper.CalculateCorrelation(correlationData);
+        CalculationResult correlationResult = MathHelper.calculateCorrelation(correlationData);
         CalculationResult regressionResult = MathHelper.calculateRegresionLineaire(regressionData);
-        
 
         System.out.println(getDisplayResult(correlationResult, regressionResult));
     }
 
-    protected static String getDisplayResult(CalculationResult correlationResult, CalculationResult regressionResult){
+    /**
+     * Display correlation and regression result
+     * @param correlationResult The correlation result
+     * @param regressionResult The regression result
+     * @return A string containing all regression and correlation result
+     */
+    protected static String getDisplayResult(CalculationResult correlationResult, CalculationResult regressionResult) {
         return getDisplayCorrelationResult(correlationResult) + getDisplayRegressionResult(regressionResult);
     }
-    
+
     /**
-     * Display result after calculation
+     * Display correlation result after calculation
      *
-     * @param correlationResult The result
-     * @return
+     * @param correlationResult The correlation result
+     * @return A string containing correlation result
      */
     private static String getDisplayCorrelationResult(CalculationResult correlationResult) {
         StringBuilder displayResult = new StringBuilder();
@@ -73,10 +78,16 @@ public class CorrelationEffortNote extends Calculator {
             displayResult.append("Correlation au carre = ").append(Math.pow(correlationResult.getCorrelation(), 2)).append(NEW_LINE);
             displayResult.append("Interprétation : ").append(CorrelationInterval.getInterpretationFromValue(correlationResult.getCorrelation())).append(NEW_LINE);
         }
-        
+
         return displayResult.toString();
     }
-    
+
+    /**
+     * Display regression result after calculation
+     *
+     * @param regressionResult The regression result
+     * @return A string containing regression result
+     */
     private static String getDisplayRegressionResult(CalculationResult regressionResult) {
         StringBuilder displayResult = new StringBuilder();
 

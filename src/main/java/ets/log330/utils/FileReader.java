@@ -54,25 +54,25 @@ public abstract class FileReader {
      * @return A list with all data within the file defined by the path.
      */
     public static List<List<Double>> read(String path, boolean checkTotalLine, int[] linesToRemove, int[] columnsToRemove) {
-        if (validatePath(path)) {
+        if (!validatePath(path)) {
             return null;
         }
 
-        List<String> content = extractContent(path);
+        List<String> contenFile = extractContent(path);
 
-        if (content == null) {
+        if (contenFile == null) {
             System.out.println("file content is null, path: " + path);
             return null;
         }
 
-        removeLines(linesToRemove, content);
+        removeLines(linesToRemove, contenFile);
 
-        if (content.isEmpty()) {
+        if (contenFile.isEmpty()) {
             System.out.println("file content is empty, path: " + path);
             return null;
-        } else if (content.size() == 1) {
+        } else if (contenFile.size() == 1) {
             System.out.println("Warning: file content has only one value, path: " + path);
-            Double totalElement = Double.parseDouble(content.get(0));
+            Double totalElement = Double.parseDouble(contenFile.get(0));
 
             if (totalElement == 0) {
                 List<List<Double>> data = new LinkedList<>();
@@ -91,16 +91,16 @@ public abstract class FileReader {
         Integer totalLine = 0;
 
         try {
-            int nbColumn = content.get(1).split(SEPARATOR).length;
+            int nbColumn = contenFile.get(1).split(SEPARATOR).length;
             data = new LinkedList<>();
 
             if (checkTotalLine) {
-                totalLine = Integer.parseInt(content.get(0).split(SEPARATOR)[0]);
-                currentLine = content.get(0);
-                content.remove(0); // Remove first line which is total number in the file.
+                totalLine = Integer.parseInt(contenFile.get(0).split(SEPARATOR)[0]);
+                currentLine = contenFile.get(0);
+                contenFile.remove(0); // Remove first line which is total number in the file.
             }
 
-            if (convertContent(nbColumn, data, content, columnsToRemove)) {
+            if (convertContent(nbColumn, data, contenFile, columnsToRemove)) {
                 return null;
             }
 
@@ -118,6 +118,16 @@ public abstract class FileReader {
         return data;
     }
 
+    /**
+     * Convert a list of each line corresponding to the file content to a list
+     * containing all interpreted value from String to Number
+     *
+     * @param nbColumn The total amount of column to convert
+     * @param data The list containing converted data
+     * @param content The files content
+     * @param columnsToRemove All columns to remove during the conversion
+     * @return True if the conversion is a success, otherwise, false.
+     */
     private static boolean convertContent(int nbColumn, List<List<Double>> data, List<String> content, int[] columnsToRemove) {
         String currentLine;
 
@@ -153,6 +163,12 @@ public abstract class FileReader {
         return false;
     }
 
+    /**
+     * This method allow to know if a value belongs to a column to remove
+     * @param columnsToRemove The list of columns to remove
+     * @param value The value to verify
+     * @return True if the value belongs to a column to remove, otherwise, false
+     */
     private static boolean columnsToRemoveContainValue(int[] columnsToRemove, int value) {
         if (columnsToRemove.length > 0) {
             return IntStream.of(columnsToRemove).anyMatch(n -> n == value);
@@ -161,6 +177,11 @@ public abstract class FileReader {
         return false;
     }
 
+    /**
+     * Extract all file content from the path
+     * @param path The path to locate the file
+     * @return A list including all content line by line
+     */
     private static List<String> extractContent(String path) {
         List<String> content = null;
 
@@ -190,10 +211,15 @@ public abstract class FileReader {
         return content;
     }
 
+    /**
+     * Verify if a path is valid and allow to locate a valid file
+     * @param path the path to validate
+     * @return  True if the path is valid, otherwise, false
+     */
     private static boolean validatePath(String path) {
         if (path == null || path.isEmpty()) {
             System.out.println("Path cannot be null or empty");
-            return true;
+            return false;
         }
 
         boolean correctEOF = false;
@@ -205,18 +231,26 @@ public abstract class FileReader {
 
         if (!correctEOF) {
             System.out.println("The file should be a csv. Path = " + path);
-            return true;
+            return false;
         }
 
         File file = new File(path);
         if (!file.exists() || !file.isFile()) {
             System.out.println("The file should be exists and be a file not a directory. Path = " + path);
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
+    /**
+     * Verify if each column contains the same amount of lines
+     * @param path The path to locate the file
+     * @param checkTotalLine True if the content contains a number to define total line
+     * @param totalLine The total lines to verify
+     * @param data The content to validate
+     * @return true if eache columns contain the same amount of line, otherwise, false
+     */
     private static boolean verifyTotalLines(String path, boolean checkTotalLine, Integer totalLine, List<List<Double>> data) {
         // If a value for total lines is specified, keep it, otherwise get a new one
         String errMsg = "The total of number (lines) doesn't match with the total specified in the first line, path: " + path;
@@ -237,6 +271,11 @@ public abstract class FileReader {
         return false;
     }
 
+    /**
+     * Remove column from a content
+     * @param columnsToRemove List of column to remove
+     * @param content  Content whose columns are to be deleted
+     */
     private static void removeColumns(int[] columnsToRemove, List<List<Double>> content) {
         if (columnsToRemove.length > 0) {
             Arrays.sort(columnsToRemove);
@@ -252,6 +291,11 @@ public abstract class FileReader {
         }
     }
 
+        /**
+     * Remove lines from a content
+     * @param linesToRemove List of lines to remove
+     * @param content  Content whose lines are to be deleted
+     */
     private static void removeLines(int[] linesToRemove, List<String> content) {
         if (linesToRemove.length > 0) {
             Arrays.sort(linesToRemove);

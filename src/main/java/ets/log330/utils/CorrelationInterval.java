@@ -6,6 +6,11 @@ package ets.log330.utils;
  */
 public abstract class CorrelationInterval {
 
+    /**
+     * Get an interpretation for a correlation value.
+     * @param value The correlation value to interpret
+     * @return The interpretation
+     */
     public static String getInterpretationFromValue(Double value){
         if(value == null){
             System.out.println("Cannot get correlation caption for null value. The value must be between 0 and 1");

@@ -34,8 +34,13 @@ public abstract class Calculator {
             return args[0];
         }
     }
-
-    protected static String getDisplayResult(CalculationResult result) {
+    
+    /**
+     * Display attributs value for CalculationResult
+     * @param result The result to display
+     * @return A string contains a display result
+     */
+    protected String getDisplayResult(CalculationResult result) {
         StringBuilder displayResult = new StringBuilder();
 
         if (result == null) {

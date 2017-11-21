@@ -36,7 +36,7 @@ public class CorrelationTests extends MathTests {
     @Test
     @Override
     public void testNullValue() {
-        CalculationResult result = MathHelper.CalculateCorrelation(null);
+        CalculationResult result = MathHelper.calculateCorrelation(null);
         assertNotNull(result);
         assertNull(result.getCorrelation());
         assertNull(result.getEcartType());
@@ -47,7 +47,7 @@ public class CorrelationTests extends MathTests {
     @Test
     @Override
     public void testEmptyValue() {
-        CalculationResult result = MathHelper.CalculateCorrelation(new ArrayList(0));
+        CalculationResult result = MathHelper.calculateCorrelation(new ArrayList(0));
         assertNotNull(result);
         assertNull(result.getCorrelation());
         assertNull(result.getEcartType());
@@ -58,7 +58,7 @@ public class CorrelationTests extends MathTests {
         data.add(new ArrayList(0));
         data.add(new ArrayList(0));
 
-        result = MathHelper.CalculateCorrelation(data);
+        result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertNotNull(result.getCorrelation());
         assertEquals(new Double(Double.NaN), result.getCorrelation());
@@ -82,7 +82,7 @@ public class CorrelationTests extends MathTests {
         data.add(column1);
         data.add(column2);
 
-        CalculationResult result = MathHelper.CalculateCorrelation(data);
+        CalculationResult result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertEquals(new Double(Double.NaN), result.getCorrelation());
 
@@ -98,7 +98,7 @@ public class CorrelationTests extends MathTests {
         data.add(column1);
         data.add(column2);
 
-        result = MathHelper.CalculateCorrelation(data);
+        result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertEquals(new Double(Double.NaN), result.getCorrelation());
         
@@ -122,7 +122,7 @@ public class CorrelationTests extends MathTests {
         data.add(column1);
         data.add(column2);
 
-        CalculationResult result = MathHelper.CalculateCorrelation(data);
+        CalculationResult result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertEquals(new Double(Double.NaN), result.getCorrelation());
 
@@ -138,7 +138,7 @@ public class CorrelationTests extends MathTests {
         data.add(column1);
         data.add(column2);
 
-        result = MathHelper.CalculateCorrelation(data);
+        result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertEquals(new Double(Double.NaN), result.getCorrelation());
     }
@@ -146,7 +146,7 @@ public class CorrelationTests extends MathTests {
     @Test
     @Override
     public void testValide() {
-        CalculationResult result = MathHelper.CalculateCorrelation(getListTwoColumnCorrelation());
+        CalculationResult result = MathHelper.calculateCorrelation(getListTwoColumnCorrelation());
         assertNotNull(result);
         assertEquals(new Double(0.9559205282352726), result.getCorrelation());
     }
@@ -166,7 +166,7 @@ public class CorrelationTests extends MathTests {
         data.add(column1);
         data.add(column2);
 
-        CalculationResult result = MathHelper.CalculateCorrelation(data);
+        CalculationResult result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertEquals(new Double(Double.NaN), result.getCorrelation());
 
@@ -182,7 +182,7 @@ public class CorrelationTests extends MathTests {
         data.add(column1);
         data.add(column2);
 
-        result = MathHelper.CalculateCorrelation(data);
+        result = MathHelper.calculateCorrelation(data);
         assertNotNull(result);
         assertEquals(new Double(Double.NaN), result.getCorrelation());
     }

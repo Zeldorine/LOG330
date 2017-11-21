@@ -10,18 +10,19 @@ import static org.junit.Assert.assertEquals;
  * @author Zeldorine
  */
 public class CorrelationCalculatorTests extends MathTests {
+    private final CorrelationCalculator correlationCalculator = new CorrelationCalculator();
 
     @Test
     @Override
     public void testNullValue() {
-        assertEquals("No result to display, result is null.", CorrelationCalculator.getDisplayResult(null));
+        assertEquals("No result to display, result is null.", correlationCalculator.getDisplayResult(null));
     }
 
     @Test
     @Override
     public void testEmptyValue() {
         CalculationResult result = new CalculationResult(null);
-        assertEquals("No result to display, result is null.", CorrelationCalculator.getDisplayResult(result));
+        assertEquals("No result to display, result is null.", correlationCalculator.getDisplayResult(result));
     }
 
     @Test
@@ -33,7 +34,7 @@ public class CorrelationCalculatorTests extends MathTests {
         displayResult.append("Correlation = ").append(Double.NaN).append(NEW_LINE);
         displayResult.append("Correlation au carre = ").append(Double.NaN).append(NEW_LINE);
 
-        assertEquals(displayResult.toString(), CorrelationCalculator.getDisplayResult(result));
+        assertEquals(displayResult.toString(), correlationCalculator.getDisplayResult(result));
     }
 
     @Test
@@ -45,7 +46,7 @@ public class CorrelationCalculatorTests extends MathTests {
         displayResult.append("Correlation = ").append(new Double(Double.MIN_VALUE)).append(NEW_LINE);
         displayResult.append("Correlation au carre = ").append(new Double(0.0)).append(NEW_LINE);
 
-        assertEquals(displayResult.toString(), CorrelationCalculator.getDisplayResult(result));
+        assertEquals(displayResult.toString(), correlationCalculator.getDisplayResult(result));
 
         result = new CalculationResult(Double.NEGATIVE_INFINITY);
 
@@ -53,7 +54,7 @@ public class CorrelationCalculatorTests extends MathTests {
         displayResult.append("Correlation = ").append(new Double(Double.POSITIVE_INFINITY)).append(NEW_LINE);
         displayResult.append("Correlation au carre = ").append(new Double(Double.POSITIVE_INFINITY)).append(NEW_LINE);
 
-        assertEquals(displayResult.toString(), CorrelationCalculator.getDisplayResult(result));
+        assertEquals(displayResult.toString(), correlationCalculator.getDisplayResult(result));
     }
 
     @Test
@@ -65,7 +66,7 @@ public class CorrelationCalculatorTests extends MathTests {
         displayResult.append("Correlation = ").append(new Double(Double.MAX_VALUE)).append(NEW_LINE);
         displayResult.append("Correlation au carre = ").append(new Double(Double.POSITIVE_INFINITY)).append(NEW_LINE);
 
-        assertEquals(displayResult.toString(), CorrelationCalculator.getDisplayResult(result));
+        assertEquals(displayResult.toString(), correlationCalculator.getDisplayResult(result));
 
         result = new CalculationResult(Double.POSITIVE_INFINITY);
 
@@ -73,7 +74,7 @@ public class CorrelationCalculatorTests extends MathTests {
         displayResult.append("Correlation = ").append(new Double(Double.POSITIVE_INFINITY)).append(NEW_LINE);
         displayResult.append("Correlation au carre = ").append(new Double(Double.POSITIVE_INFINITY)).append(NEW_LINE);
 
-        assertEquals(displayResult.toString(), CorrelationCalculator.getDisplayResult(result));
+        assertEquals(displayResult.toString(), correlationCalculator.getDisplayResult(result));
     }
 
     @Test
@@ -85,6 +86,6 @@ public class CorrelationCalculatorTests extends MathTests {
         displayResult.append("Correlation = ").append(new Double(0.9559205282352726)).append(NEW_LINE);
         displayResult.append("Correlation au carre = ").append(new Double(0.9137840563016026)).append(NEW_LINE);
 
-        assertEquals(displayResult.toString(), CorrelationCalculator.getDisplayResult(result));
+        assertEquals(displayResult.toString(), correlationCalculator.getDisplayResult(result));
     }
 }
