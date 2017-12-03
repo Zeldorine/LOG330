@@ -1,5 +1,8 @@
 package ets.log330.utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * This class encapsulate all informations about a variance calculation :
  * <ul>
@@ -18,6 +21,7 @@ public class CalculationResult {
     private Double correlation;
     private Double regressionB1;
     private Double regressionB0;
+    private final Map<Integer, Double> intervalValue = new HashMap();
 
     public CalculationResult() {
     }
@@ -166,4 +170,26 @@ public class CalculationResult {
     public void setRegressionB0(Double regressionB0) {
         this.regressionB0 = regressionB0;
     }
+
+    /**
+     * Get the interval value.
+     *
+     * @param percentage Get the interval value for this percentage
+     * @return the interval value.
+     */
+    public Double getIntervalValue(Integer percentage) {
+        return intervalValue.get(percentage);
+    }
+
+    /**
+     * add an interval value.
+     *
+     * @param interval The interval value.
+     * @param percentage The percentage value correspondant to the interval value
+     */
+    public void setIntervalValue(Double interval, Integer percentage) {
+        intervalValue.put(percentage, interval);
+    }
+    
+    
 }

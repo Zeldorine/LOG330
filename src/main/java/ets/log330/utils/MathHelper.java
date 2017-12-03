@@ -1,5 +1,6 @@
 package ets.log330.utils;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -155,7 +156,7 @@ public abstract class MathHelper {
             System.out.println("To calculate correlation it should be 2 columns or " + data.size() + " was found");
             return new CalculationResult(null);
         }
-        
+
         Double correlation = null;
 
         try {
@@ -171,7 +172,7 @@ public abstract class MathHelper {
             System.out.println("Cannot calculate correlation. Error " + e.getMessage());
             return new CalculationResult(null);
         }
-        
+
         return new CalculationResult(correlation);
     }
 
@@ -338,10 +339,12 @@ public abstract class MathHelper {
     }
 
     /**
-     * Do the sum of each element line by line and divide the sum by the divisor.
+     * Do the sum of each element line by line and divide the sum by the
+     * divisor.
+     *
      * @param data The list of list to add and merge
      * @param divisor The divisor to divide the sum of all elements
-     * @return A list with all value added and divide by the divisor 
+     * @return A list with all value added and divide by the divisor
      */
     public static List<Double> sumAndMergeList(List<List<Double>> data, int divisor) {
         if (data == null) {
@@ -366,9 +369,98 @@ public abstract class MathHelper {
                 sum += data.get(i).get(j);
             }
 
-            mergedList.add((sum/divisor));
+            mergedList.add((sum / divisor));
         }
 
         return mergedList;
+    }
+
+    static Double calculateVarianceInterval(List<List<Double>> data, CalculationResult regressionLinear) {
+        if (data == null || data.isEmpty()) {
+            System.out.println("Data is null, cannot calculate variance");
+            return null;
+        }
+
+        if (data.size() != 2) {
+            System.out.println("To calculate variance it should be 2 columns or " + data.size() + " was found");
+            return null;
+        }
+
+        if (regressionLinear.getRegressionB0() == null) {
+            System.out.println("Impossible de calculer l'interval, B0 est null");
+            return null;
+        }
+
+        if (regressionLinear.getRegressionB1() == null) {
+            System.out.println("Impossible de calculer l'interval, B1 est null");
+            return null;
+        }
+
+        Double somme = 0.0;
+        int nbElement = data.get(0).size();
+
+        Double B0 = regressionLinear.getRegressionB0();
+        Double B1 = regressionLinear.getRegressionB1();
+
+        for (int i = 0; i < nbElement; i++) {
+            Double xi = data.get(0).get(i);
+            Double yi = data.get(1).get(i);
+            somme += Math.pow(yi - B0 - B1 * xi, 2);
+        }
+
+        return (1 / (double) (nbElement - 2)) * somme;
+    }
+
+    public static CalculationResult calculateInterval(List<List<Double>> data, double xk) {
+        CalculationResult result = new CalculationResult();
+
+        if (data == null || data.isEmpty()) {
+            System.out.println("Data is null, cannot calculate correlation");
+            return null;
+        }
+
+        if (data.size() != 2) {
+            System.out.println("To calculate interval it should be 2 columns or " + data.size() + " was found");
+            return null;
+        }
+
+        int n = data.get(0).size();
+
+        if (n == 0) {
+            System.out.println("To calculate interval it should be 2 columns not empty 0 elements was found");
+            return null;
+        }
+
+        // Step 2: Calculate Ecart Type
+        CalculationResult regressionLinear = calculateRegresionLineaire(data);
+        result.setRegressionB0(regressionLinear.getRegressionB0());
+        result.setRegressionB1(regressionLinear.getRegressionB1());
+
+        // Step 3: Calculate interval
+        Double moyenne = calculateMoyenne(data.get(0));
+        List<Double> distance = calculateDistance(data.get(0), moyenne);
+        Double sommeDistance = calculateSommeDistance(distance);
+        Double variance = calculateVarianceInterval(data, result);
+        Double ecartType = calculateEcartType(variance);
+
+        Double studentValue70 = StudentValue.getStudentValue(70, n - 2);
+        Double studentValue90 = StudentValue.getStudentValue(90, n - 2);
+
+        Double racine = Math.sqrt(1.0 + (1.0 / n) + ((Math.pow((xk - moyenne), 2)) / sommeDistance));
+
+        Double interval70 = null;
+        Double interval90 = null;
+        if (studentValue70 != null) {
+            interval70 = studentValue70 * ecartType * racine;
+        }
+
+        if (studentValue90 != null) {
+            interval90 = studentValue90 * ecartType * racine;
+        }
+
+        result.setIntervalValue(interval70, 70);
+        result.setIntervalValue(interval90, 90);
+
+        return result;
     }
 }
