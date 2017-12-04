@@ -21,10 +21,10 @@ public class IntervalleConfiance extends Calculator {
      */
     public static void main(String[] args) {
         String path = getFileFromArgs(args);
-        List<List<Double>> data = FileReader.read(path);
+        List<List<Double>> data = FileReader.read(path, true);
 
         if (data == null || data.isEmpty()) {
-            System.out.println("Data cannot be null to calculate variance, exit...");
+            System.out.println("Data cannot be null to calculate interval, exit...");
             exit(-1);
         }
 
@@ -99,14 +99,14 @@ public class IntervalleConfiance extends Calculator {
         Double xk = null;
 
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             boolean stop = false;
             String response;
 
             System.out.println("Quel valeur xk voulez-vous utiliser pour l'interval de confiance ? (exit) :");
             
             while (!stop) {
-                response = br.readLine();
+                response = bufferedReader.readLine();
 
                 if ("exit".equalsIgnoreCase(response)) {
                     stop = true;

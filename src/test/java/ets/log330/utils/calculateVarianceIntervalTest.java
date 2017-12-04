@@ -77,7 +77,7 @@ public class calculateVarianceIntervalTest extends MathTests {
         result.setRegressionB0(Double.MIN_VALUE);
         result.setRegressionB1(Double.MIN_VALUE);
         
-        assertEquals(new Double("-0.0"), MathHelper.calculateVarianceInterval(data, result));
+        assertEquals(new Double(Double.NaN), MathHelper.calculateVarianceInterval(data, result));
         
         
         data = new ArrayList();
@@ -112,7 +112,7 @@ public class calculateVarianceIntervalTest extends MathTests {
         result.setRegressionB0(Double.MAX_VALUE);
         result.setRegressionB1(Double.MAX_VALUE);
         
-        assertEquals(new Double(Double.NEGATIVE_INFINITY), MathHelper.calculateVarianceInterval(data, result));
+        assertEquals(new Double(Double.POSITIVE_INFINITY), MathHelper.calculateVarianceInterval(data, result));
         
         
         data = new ArrayList();
@@ -137,6 +137,6 @@ public class calculateVarianceIntervalTest extends MathTests {
         List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/TP6-DonneesTestValide.csv");
         CalculationResult result = MathHelper.calculateRegresionLineaire(data);
         
-        assertEquals(new Double(39162.66063525697), MathHelper.calculateVarianceInterval(data, result));
+        assertEquals(new Double(34811.253898006195), MathHelper.calculateVarianceInterval(data, result));
     }
 }

@@ -408,7 +408,7 @@ public abstract class MathHelper {
             somme += Math.pow(yi - B0 - B1 * xi, 2);
         }
 
-        return (1 / (double) (nbElement - 2)) * somme;
+        return (1 / (double) (nbElement - 1)) * somme;
     }
 
     public static CalculationResult calculateInterval(List<List<Double>> data, double xk) {

@@ -143,8 +143,8 @@ public class calculateIntervalTest extends MathTests {
         List<List<Double>> data = FileReader.read("./src/test/java/ets/log330/resources/TP6-DonneesTestValide.csv");
         CalculationResult result = MathHelper.calculateInterval(data, 1119);
         assertNotNull(result);
-        assertEquals(new Double(277.7197349347522), result.getIntervalValue(70));
-        assertEquals(new Double(466.20821929480064), result.getIntervalValue(90));
+        assertEquals(new Double(261.8366771222584), result.getIntervalValue(70));
+        assertEquals(new Double(439.54532441101134), result.getIntervalValue(90));
     }
 
 }

@@ -72,7 +72,13 @@ public abstract class FileReader {
             return null;
         } else if (contenFile.size() == 1) {
             System.out.println("Warning: file content has only one value, path: " + path);
-            Double totalElement = Double.parseDouble(contenFile.get(0));
+            Double totalElement = 0.0;
+            try {
+                totalElement = Double.parseDouble(contenFile.get(0));
+            } catch (NumberFormatException nfe) {
+                System.out.println("Error, the value is not a number: " + contenFile.get(0));
+                return null;
+            }
 
             if (totalElement == 0) {
                 List<List<Double>> data = new LinkedList<>();
@@ -165,6 +171,7 @@ public abstract class FileReader {
 
     /**
      * This method allow to know if a value belongs to a column to remove
+     *
      * @param columnsToRemove The list of columns to remove
      * @param value The value to verify
      * @return True if the value belongs to a column to remove, otherwise, false
@@ -179,6 +186,7 @@ public abstract class FileReader {
 
     /**
      * Extract all file content from the path
+     *
      * @param path The path to locate the file
      * @return A list including all content line by line
      */
@@ -213,8 +221,9 @@ public abstract class FileReader {
 
     /**
      * Verify if a path is valid and allow to locate a valid file
+     *
      * @param path the path to validate
-     * @return  True if the path is valid, otherwise, false
+     * @return True if the path is valid, otherwise, false
      */
     private static boolean validatePath(String path) {
         if (path == null || path.isEmpty()) {
@@ -245,11 +254,14 @@ public abstract class FileReader {
 
     /**
      * Verify if each column contains the same amount of lines
+     *
      * @param path The path to locate the file
-     * @param checkTotalLine True if the content contains a number to define total line
+     * @param checkTotalLine True if the content contains a number to define
+     * total line
      * @param totalLine The total lines to verify
      * @param data The content to validate
-     * @return true if eache columns contain the same amount of line, otherwise, false
+     * @return true if eache columns contain the same amount of line, otherwise,
+     * false
      */
     private static boolean verifyTotalLines(String path, boolean checkTotalLine, Integer totalLine, List<List<Double>> data) {
         // If a value for total lines is specified, keep it, otherwise get a new one
@@ -273,8 +285,9 @@ public abstract class FileReader {
 
     /**
      * Remove column from a content
+     *
      * @param columnsToRemove List of column to remove
-     * @param content  Content whose columns are to be deleted
+     * @param content Content whose columns are to be deleted
      */
     private static void removeColumns(int[] columnsToRemove, List<List<Double>> content) {
         if (columnsToRemove.length > 0) {
@@ -291,10 +304,11 @@ public abstract class FileReader {
         }
     }
 
-        /**
+    /**
      * Remove lines from a content
+     *
      * @param linesToRemove List of lines to remove
-     * @param content  Content whose lines are to be deleted
+     * @param content Content whose lines are to be deleted
      */
     private static void removeLines(int[] linesToRemove, List<String> content) {
         if (linesToRemove.length > 0) {

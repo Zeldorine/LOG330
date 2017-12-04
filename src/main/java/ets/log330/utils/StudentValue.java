@@ -24,6 +24,12 @@ public class StudentValue {
         studentValues.put(90, p90Values);
     }
 
+    /**
+     * Get a student value. Only 70 and 90 percent are accepted.
+     * @param percentage the percetange to get student value, 70 or 90.
+     * @param nbElement the df value (must be equals to 10)
+     * @return the student value
+     */
     public static Double getStudentValue(int percentage, int nbElement) {
         if (percentage == 70 || percentage == 90) {
             return studentValues.get(percentage).get(nbElement);
